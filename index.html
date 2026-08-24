@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BISPRO PNUP - Home</title>
+<title>BISPRO PNUP - Class</title>
 <style>
   * {
     box-sizing: border-box;
@@ -16,11 +16,10 @@
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ffffff;
-    overflow-x: hidden;
   }
 
   /* --- BACKGROUND UTAMA --- */
-  .home-container {
+  .class-container {
     position: relative;
     width: 100%;
     min-height: 100vh;
@@ -82,90 +81,195 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   }
 
-  /* --- KONTEN UTAMA HOME --- */
+  /* --- KONTEN UTAMA --- */
   .main-content {
-    max-width: 900px;
+    max-width: 1000px;
     width: 100%;
     margin: 0 auto;
     z-index: 10;
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 20px;
+    gap: 25px;
     padding-bottom: 40px;
   }
 
-  .hero-title {
-    font-size: clamp(35px, 6vw, 55px);
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+  .page-title-box {
+    text-align: center;
     margin-bottom: 5px;
   }
 
-  .hero-subtitle {
-    font-size: clamp(15px, 2.5vw, 20px);
+  .page-title {
+    font-size: clamp(32px, 5vw, 45px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    font-size: clamp(14px, 2vw, 17px);
     color: #e0e0e0;
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-    max-width: 700px;
-    line-height: 1.5;
+    margin-bottom: 15px;
   }
 
-  /* --- KUCING KARTUN INTERAKTIF (BISA DIANGKAT / DRAG) --- */
-  .climbing-cat-container {
+  /* --- KOTAK TERPISAH UNTUK TOMBOL BOOKING KELAS DI BAWAH SUBTITLE --- */
+  .booking-card {
+    background: rgba(20, 20, 25, 0.65);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(112, 181, 255, 0.3);
+    border-radius: 20px;
+    padding: 20px 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    margin: 10px 0;
-    height: 70px;
-    position: relative;
-    width: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
   }
 
-  .cat-avatar {
-    width: 65px;
-    height: 65px;
-    cursor: grab;
-    position: absolute;
-    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
-    animation: climbWiggle 2s infinite ease-in-out;
-    user-select: none;
-    touch-action: none;
-    z-index: 99;
+  .booking-info h4 {
+    font-size: 17px;
+    color: #ffffff;
+    margin-bottom: 5px;
+    font-weight: 700;
   }
 
-  .cat-avatar:active {
-    cursor: grabbing;
+  .booking-info p {
+    font-size: 13px;
+    color: #dcdcdc;
+    font-style: italic;
+    line-height: 1.4;
   }
 
-  /* Animasi goyangan lucu seperti sedang berusaha memanjat */
-  @keyframes climbWiggle {
-    0%, 100% { transform: rotate(-5deg) translateY(0); }
-    50% { transform: rotate(5deg) translateY(-6px); }
-  }
-
-  /* --- TOMBOL AKSI UTAMA --- */
-  .hero-btn {
+  .booking-btn {
     background: #70b5ff;
     color: #111111;
     text-decoration: none;
-    padding: 14px 35px;
+    padding: 12px 28px;
     border-radius: 30px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 700;
-    box-shadow: 0 4px 20px rgba(112, 181, 255, 0.4);
+    box-shadow: 0 4px 15px rgba(112, 181, 255, 0.4);
     transition: all 0.3s ease;
-    margin-top: 10px;
+    white-space: nowrap;
   }
 
-  .hero-btn:hover {
+  .booking-btn:hover {
     background: #ffffff;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+  }
+
+  /* --- KOTAK WRAPPER UTAMA (TABEL & PILIHAN ANGKATAN) --- */
+  .table-card {
+    background: rgba(20, 20, 25, 0.65);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  }
+
+  .table-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #ffffff;
+    border-left: 4px solid #70b5ff;
+    padding-left: 12px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  }
+
+  /* --- PILIHAN ANGKATAN (BUTTON TABS) --- */
+  .batch-selector {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  .batch-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .batch-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .batch-btn.active {
+    background: #70b5ff;
+    color: #111111;
+    border-color: #70b5ff;
+    box-shadow: 0 4px 15px rgba(112, 181, 255, 0.4);
+  }
+
+  /* Konten Jadwal per Angkatan */
+  .schedule-content {
+    display: none;
+  }
+
+  .schedule-content.active-schedule {
+    display: block;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Desain Tabel Modern */
+  .custom-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14.5px;
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .custom-table th {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+
+  .custom-table tr {
+    transition: background 0.2s ease;
+  }
+
+  .custom-table tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .custom-table td {
+    color: #f1f1f1;
   }
 
   /* --- FOOTER SOSIAL MEDIA --- */
@@ -193,7 +297,7 @@
 
   /* Responsif Tampilan HP / Tablet */
   @media (max-width: 768px) {
-    .home-container {
+    .class-container {
       padding: 20px;
     }
     .footer-bottom {
@@ -205,33 +309,363 @@
       padding: 8px 18px;
       font-size: 13px;
     }
+    .table-card, .booking-card {
+      padding: 15px;
+    }
+    .booking-card {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+    .booking-btn {
+      width: 100%;
+      text-align: center;
+    }
+    .batch-selector {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .batch-btn {
+      width: 100%;
+      text-align: center;
+    }
+    .custom-table th, .custom-table td {
+      padding: 10px 12px;
+      font-size: 13px;
+    }
   }
 </style>
 </head>
 <body>
 
-<div class="home-container">
+<div class="class-container">
   <!-- Bagian Atas: Logo & Menu Navigasi -->
   <div class="header-top">
     <img src="https://lh3.googleusercontent.com/d/1dlXujStWQ5VyDArzjLhR1VpqVaJ9k1oj" alt="Logo PNUP" class="logo-img">
 
     <div class="nav-menu">
-      <a href="index.html" class="active">HOME</a>
-      <a href="class.html">CLASS</a>
+      <a href="index.html">HOME</a>
+      <a href="class.html" class="active">CLASS</a>
     </div>
   </div>
 
-  <!-- Konten Utama Halaman Home -->
+  <!-- Konten Utama Halaman Kelas -->
   <div class="main-content">
-    <div class="hero-title">Welcome to BISPRO PNUP</div>
-    <div class="hero-subtitle">Program Studi D4 Bisnis Profesional - Politeknik Negeri Ujung Pandang</div>
-    
-    <!-- Animasi Kucing Kartun Memanjat yang Bisa Diangkat/Digeser (Draggable) -->
-    <div class="climbing-cat-container">
-      <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f408.png" alt="Kucing Memanjat" class="cat-avatar" id="draggableCat" title="Klik dan seret (angkat) saya!">
+    <div class="page-title-box">
+      <div class="page-title">Class Information</div>
+      <div class="page-subtitle">Pilih Angkatan & Lihat Jadwal Mata Kuliah BISPRO PNUP</div>
     </div>
 
-    <a href="class.html" class="hero-btn">Lihat Jadwal Kelas</a>
+    <!-- Tombol & Kotak Booking Kelas Terpisah di Bawah Subtitle -->
+    <div class="booking-card">
+      <div class="booking-info">
+        <h4>Peminjaman / Booking Ruang Kelas</h4>
+        <p>*Catatan: Fitur booking kelas ini hanya dapat diakses oleh mahasiswa yang akunnya sudah didaftarkan sebelumnya pada staf/admin.</p>
+      </div>
+      <a href="http://10.0.14.55/dashboard.php?msg=success" class="booking-btn" target="_blank">Booking Kelas Sekarang</a>
+    </div>
+
+    <!-- Kotak Utama: Pilih Angkatan Mahasiswa & Tabel Jadwal -->
+    <div class="table-card">
+      <h3>Pilih Angkatan Mahasiswa</h3>
+      
+      <!-- Tombol Pilihan Angkatan -->
+      <div class="batch-selector">
+        <button class="batch-btn active" onclick="switchBatch('2026', event)">Angkatan 2026</button>
+        <button class="batch-btn" onclick="switchBatch('2025', event)">Angkatan 2025</button>
+        <button class="batch-btn" onclick="switchBatch('2024', event)">Angkatan 2024</button>
+      </div>
+
+      <!-- TABEL JADWAL: ANGKATAN 2026 -->
+      <div id="batch-2026" class="schedule-content active-schedule">
+        <h3 style="border-left-color: #70b5ff; font-size: 17px; margin-top: 10px;">Jadwal Mata Kuliah - Angkatan 2026</h3>
+        <div class="custom-table-wrap">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Hari</th>
+                <th>Waktu</th>
+                <th>Mata Kuliah Dasar</th>
+                <th>Ruangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Senin</strong></td>
+                <td>13.50 - 16.50</td>
+                <td>Reading for General Communication</td>
+                <td>GS AB 4</td>
+              </tr>
+              <tr>
+                <td><strong>Selasa</strong></td>
+                <td>13.50 - 16.50</td>
+                <td>Speaking for General Communication</td>
+                <td>AN 207</td>
+              </tr>
+              <tr>
+                <td><strong>Rabu</strong></td>
+                <td>
+                  07.30 - 10.00<br>
+                  10.20 - 12.00<br>
+                  13.00 - 15.30
+                </td>
+                <td>
+                  Listening for General Communication<br>
+                  Bahasa Inggris Umum<br>
+                  <em>Praktik / Kelas Komputer</em>
+                </td>
+                <td>
+                  AN 101<br>
+                  GS AB 6<br>
+                  Lab Komputer 1 AD lt.3
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Kamis</strong></td>
+                <td>
+                  09.10 - 11.10<br>
+                  11.10 - 13.50<br>
+                  13.50 - 15.30
+                </td>
+                <td>
+                  Etika Profesi<br>
+                  Introduction to Linguistics<br>
+                  Pendidikan Agama
+                </td>
+                <td>
+                  GS AB 4<br>
+                  GS AB 6<br>
+                  GS AB 1
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Jumat</strong></td>
+                <td>
+                  07.30 - 09.10<br>
+                  13.00 - 15.30
+                </td>
+                <td>
+                  Introduction to Intercultural Communication<br>
+                  Writing for General Communication
+                </td>
+                <td>
+                  GS AB 5<br>
+                  AN 103
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABEL JADWAL: ANGKATAN 2025 -->
+      <div id="batch-2025" class="schedule-content">
+        <h3 style="border-left-color: #70b5ff; font-size: 17px; margin-top: 10px;">Jadwal Mata Kuliah - Angkatan 2025</h3>
+        <div class="custom-table-wrap">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Hari</th>
+                <th>Waktu</th>
+                <th>Mata Kuliah Menengah</th>
+                <th>Ruangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Senin</strong></td>
+                <td>
+                  07.30 - 12.00<br>
+                  13.00 - 16.50
+                </td>
+                <td>
+                  English for Business Correspondence<br>
+                  Typing Tutor
+                </td>
+                <td>
+                  AUD 1<br>
+                  AN2 306
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Selasa</strong></td>
+                <td>
+                  13.50 - 16.50<br>
+                  16.50 - 19.30
+                </td>
+                <td>
+                  English for Customer Service Communication<br>
+                  Introduction to Business and Professional Communication
+                </td>
+                <td>
+                  GS AB 5<br>
+                  AN 103
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Rabu</strong></td>
+                <td>
+                  07.30 - 12.00<br>
+                  13.00 - 17.40
+                </td>
+                <td>
+                  Aplikasi Komputer Spreadsheet<br>
+                  English for Business
+                </td>
+                <td>
+                  Lab Komputer 1 AD lt.3<br>
+                  AN 101
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Kamis</strong></td>
+                <td>-</td>
+                <td><em>Tidak ada mata kuliah</em></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><strong>Jumat</strong></td>
+                <td>
+                  07.30 - 12.00<br>
+                  13.50 - 16.50
+                </td>
+                <td>
+                  English Grammar for Professional<br>
+                  Theories of Communication
+                </td>
+                <td>
+                  GS AB 6<br>
+                  GS AB 5
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABEL JADWAL: ANGKATAN 2024 -->
+      <div id="batch-2024" class="schedule-content">
+        <h3 style="border-left-color: #70b5ff; font-size: 17px; margin-top: 10px;">Jadwal Mata Kuliah - Angkatan 2024</h3>
+        <div class="custom-table-wrap">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Hari</th>
+                <th>Waktu</th>
+                <th>Mata Kuliah Tingkat Lanjut</th>
+                <th>Ruangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Senin</strong></td>
+                <td>
+                  11.10 - 13.50<br>
+                  13.50 - 15.30
+                </td>
+                <td>
+                  Digital Literacy in Business and Professional Communication<br>
+                  Ethics in Digital and Professional Communication
+                </td>
+                <td>
+                  GS AB 6<br>
+                  GS AB 3
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Selasa</strong></td>
+                <td>-</td>
+                <td><em>Tidak ada mata kuliah</em></td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td><strong>Rabu</strong></td>
+                <td>13.00 - 17.40</td>
+                <td>English for International Trade</td>
+                <td>AN 204</td>
+              </tr>
+              <tr>
+                <td><strong>Kamis</strong></td>
+                <td>
+                  07.30 - 10.00<br>
+                  10.20 - 15.30
+                </td>
+                <td>
+                  English for Business Presentation<br>
+                  English for Public Relations
+                </td>
+                <td>
+                  AN 204<br>
+                  AN 101
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Jumat</strong></td>
+                <td>
+                  07.30 - 11.10<br>
+                  11.10 - 13.50<br>
+                  13.50 - 19.30
+                </td>
+                <td>
+                  Applied Linguistics for Business Communication<br>
+                  Strategic Business and Professional Communication<br>
+                  Technology Assisted Business Writing
+                </td>
+                <td>
+                  GS AB 2<br>
+                  GS AB 5<br>
+                  AN 207
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Tabel 2: Dosen Pengampu -->
+    <div class="table-card">
+      <h3>Dosen Pengampu</h3>
+      <div class="custom-table-wrap">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Dosen & Gelar</th>
+              <th>Jabatan / Peran di Program Studi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Drs. Paramudia, M.Ed., Ph.D.</td>
+              <td>Ketua Jurusan Administrasi Niaga PNUP</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Dra. Farida Amansyah, M.A., TESOL</td>
+              <td>Koordinator / Ketua Program Studi D4 BISPRO PNUP</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Drs. Akhmad, M.Ed., TESOL</td>
+              <td>Ketua Tim Kurikulum D4 BISPRO</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Ani Dyah Astuty, M.Hum.</td>
+              <td>Sekretaris Penyusunan Kurikulum D4 BISPRO</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Dr. Ismail Anas, S.Pd., M.Pd.</td>
+              <td>Dosen PNUP, terlibat dalam kegiatan akademik/pengembangan BISPRO</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 
   <!-- Bagian Bawah: Tautan Sosial Media -->
@@ -242,33 +676,18 @@
   </div>
 </div>
 
-<!-- Skrip JavaScript untuk Interaksi Kucing -->
+<!-- Skrip JavaScript untuk Mengganti Jadwal Berdasarkan Angkatan -->
 <script>
-  const cat = document.getElementById('draggableCat');
-  let isDragging = false;
-  let startX, startY, initialX = 0, initialY = 0;
+  function switchBatch(year, event) {
+    const contents = document.querySelectorAll('.schedule-content');
+    contents.forEach(el => el.classList.remove('active-schedule'));
 
-  cat.addEventListener('pointerdown', (e) => {
-    isDragging = true;
-    cat.setPointerCapture(e.pointerId);
-    startX = e.clientX - initialX;
-    startY = e.clientY - initialY;
-    cat.style.animation = 'none'; // Hentikan animasi goyang sementara diangkat
-  });
+    const buttons = document.querySelectorAll('.batch-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
 
-  cat.addEventListener('pointermove', (e) => {
-    if (!isDragging) return;
-    initialX = e.clientX - startX;
-    initialY = e.clientY - startY;
-    cat.style.transform = `translate(${initialX}px, ${initialY}px) scale(1.15)`;
-  });
-
-  cat.addEventListener('pointerup', (e) => {
-    if (!isDragging) return;
-    isDragging = false;
-    cat.releasePointerCapture(e.pointerId);
-    cat.style.animation = 'climbWiggle 2s infinite ease-in-out'; // Kembalikan animasi goyang
-  });
+    document.getElementById('batch-' + year).classList.add('active-schedule');
+    event.currentTarget.classList.add('active');
+  }
 </script>
 
 </body>
