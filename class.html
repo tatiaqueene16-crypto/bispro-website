@@ -365,19 +365,19 @@
       <a href="http://10.0.14.55/dashboard.php?msg=success" class="booking-btn" target="_blank">Booking Kelas Sekarang</a>
     </div>
 
-    <!-- Kotak Utama: Pilih Angkatan Mahasiswa & Tabel Jadwal Kembali Bersih -->
+    <!-- Kotak Utama: Pilih Angkatan Mahasiswa & Tabel Jadwal -->
     <div class="table-card">
       <h3>Pilih Angkatan Mahasiswa</h3>
       
       <!-- Tombol Pilihan Angkatan -->
       <div class="batch-selector">
-        <button class="batch-btn active" onclick="switchBatch('2026', event)">Angkatan 2026</button>
+        <button class="batch-btn" onclick="switchBatch('2026', event)">Angkatan 2026</button>
         <button class="batch-btn" onclick="switchBatch('2025', event)">Angkatan 2025</button>
-        <button class="batch-btn" onclick="switchBatch('2024', event)">Angkatan 2024</button>
+        <button class="batch-btn active" onclick="switchBatch('2024', event)">Angkatan 2024</button>
       </div>
 
       <!-- TABEL JADWAL: ANGKATAN 2026 -->
-      <div id="batch-2026" class="schedule-content active-schedule">
+      <div id="batch-2026" class="schedule-content">
         <h3 style="border-left-color: #70b5ff; font-size: 17px; margin-top: 10px;">Jadwal Mata Kuliah - Angkatan 2026</h3>
         <div class="custom-table-wrap">
           <table class="custom-table">
@@ -451,7 +451,7 @@
       </div>
 
       <!-- TABEL JADWAL: ANGKATAN 2024 -->
-      <div id="batch-2024" class="schedule-content">
+      <div id="batch-2024" class="schedule-content active-schedule">
         <h3 style="border-left-color: #70b5ff; font-size: 17px; margin-top: 10px;">Jadwal Mata Kuliah - Angkatan 2024</h3>
         <div class="custom-table-wrap">
           <table class="custom-table">
@@ -519,7 +519,7 @@
                   Technology Assisted Business Writing
                 </td>
                 <td>
-                  AS AB 2<br>
+                  GS AB 2<br>
                   GS AB 5<br>
                   AN 207
                 </td>
