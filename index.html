@@ -23,8 +23,7 @@
     position: relative;
     width: 100vw;
     height: 100vh;
-    /* Ganti link di bawah dengan link langsung gambar background Anda */
-    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.65)), 
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.65)), 
                 url('https://lh3.googleusercontent.com/d/14oVmG_H_0NTpWITJRXdKE7yhB0I56ww0') no-repeat center center fixed;
     background-size: cover;
     display: flex;
@@ -49,7 +48,7 @@
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
   }
 
-  /* Menu Navigasi Kanan Atas */
+  /* Menu Navigasi Kanan Atas dengan Efek Transisi Aktif */
   .nav-menu {
     background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(10px);
@@ -78,24 +77,39 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   }
 
-  /* --- KONTEN UTAMA (ANIMASI TEKS BERGERAK) --- */
+  /* --- KONTEN UTAMA DENGAN EFEK CAHAYA / KILAU (GLOW EFFECT) --- */
   .hero-content {
+    position: relative;
     text-align: center;
     z-index: 10;
     margin-bottom: 5vh;
   }
 
+  /* Efek Kilau Cahaya Putih di Belakang Teks (Glow) */
+  .hero-content::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 120px;
+    background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.35) 0%, rgba(255, 255, 255, 0.05) 60%, transparent 100%);
+    filter: blur(25px);
+    z-index: -1;
+    animation: glowPulse 4s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.95); }
+    50% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  }
+
   /* Animasi Floating/Bergerak untuk Teks Welcome */
   @keyframes floatText {
-    0% {
-      transform: translateY(0px) scale(1);
-    }
-    50% {
-      transform: translateY(-8px) scale(1.02);
-    }
-    100% {
-      transform: translateY(0px) scale(1);
-    }
+    0% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-6px) scale(1.01); }
+    100% { transform: translateY(0px) scale(1); }
   }
 
   .welcome-title {
@@ -103,14 +117,14 @@
     font-weight: 900;
     font-style: italic;
     color: #ffffff;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-transform: uppercase;
-    text-shadow: 0 5px 25px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 30px rgba(255, 255, 255, 0.4);
     animation: floatText 4s ease-in-out infinite;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
-  /* Animasi Masuk & Berdenyut untuk Subjudul */
+  /* Animasi Subjudul */
   @keyframes pulseSub {
     0% { opacity: 0.85; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.01); }
@@ -118,10 +132,10 @@
   }
 
   .hero-subtitle {
-    font-size: clamp(16px, 2.5vw, 26px);
+    font-size: clamp(15px, 2.3vw, 24px);
     font-weight: 600;
-    color: #f0f0f0;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    color: #f2f2f2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
     letter-spacing: 1px;
     animation: pulseSub 3s ease-in-out infinite;
   }
@@ -171,17 +185,15 @@
 <div class="hero-container">
   <!-- Bagian Atas: Logo & Menu Navigasi -->
   <div class="header-top">
-    <!-- Logo PNUP di Pojok Kiri Atas -->
     <img src="https://lh3.googleusercontent.com/d/1dlXujStWQ5VyDArzjLhR1VpqVaJ9k1oj" alt="Logo PNUP" class="logo-img">
 
-    <!-- Menu Navigasi -->
     <div class="nav-menu">
       <a href="index.html" class="active">HOME</a>
       <a href="class.html">CLASS</a>
     </div>
   </div>
 
-  <!-- Bagian Tengah: Teks Animasi Bergerak -->
+  <!-- Bagian Tengah: Teks Animasi dengan Efek Kilau Cahaya -->
   <div class="hero-content">
     <div class="welcome-title">WELCOME</div>
     <div class="hero-subtitle">English for Business And Professional Communication</div>
