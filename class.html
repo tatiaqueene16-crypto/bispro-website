@@ -135,6 +135,47 @@
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
   }
 
+  /* --- TOMBOL BOOKING KELAS ---. */
+  .booking-section {
+    text-align: center;
+    background: rgba(112, 181, 255, 0.1);
+    border: 1px dashed rgba(112, 181, 255, 0.4);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .booking-btn {
+    display: inline-block;
+    background: #70b5ff;
+    color: #111111;
+    text-decoration: none;
+    padding: 12px 32px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(112, 181, 255, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .booking-btn:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+  }
+
+  .booking-note {
+    font-size: 13.5px;
+    color: #dcdcdc;
+    font-style: italic;
+    max-width: 600px;
+    line-height: 1.4;
+  }
+
   /* --- PILIHAN ANGKATAN (BUTTON TABS) --- */
   .batch-selector {
     display: flex;
@@ -300,6 +341,12 @@
     <!-- Kotak Utama: Pilih Angkatan Terlebih Dahulu -->
     <div class="table-card">
       <h3>Pilih Angkatan Mahasiswa</h3>
+
+      <!-- Tombol & Catatan Booking Kelas -->
+      <div class="booking-section">
+        <a href="http://10.0.14.55/dashboard.php?msg=success" class="booking-btn" target="_blank">Booking Kelas Sekarang</a>
+        <p class="booking-note">*Catatan: Fitur booking kelas ini hanya dapat diakses oleh mahasiswa yang akunnya sudah didaftarkan sebelumnya pada staf/admin.</p>
+      </div>
       
       <!-- Tombol Pilihan Angkatan -->
       <div class="batch-selector">
