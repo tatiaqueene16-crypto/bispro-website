@@ -16,6 +16,7 @@
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ffffff;
+    overflow-x: hidden;
   }
 
   /* --- BACKGROUND UTAMA --- */
@@ -26,6 +27,7 @@
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), 
                 url('https://lh3.googleusercontent.com/d/14oVmG_H_0NTpWITJRXdKE7yhB0I56ww0') no-repeat center center fixed;
     background-size: cover;
+    image-rendering: -webkit-optimize-contrast;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -84,43 +86,86 @@
   .main-content {
     max-width: 900px;
     width: 100%;
-    margin: auto auto;
-    text-align: center;
+    margin: 0 auto;
     z-index: 10;
-    padding: 40px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 20px;
+    padding-bottom: 40px;
   }
 
-  .welcome-title {
-    font-size: clamp(36px, 6vw, 55px);
+  .hero-title {
+    font-size: clamp(35px, 6vw, 55px);
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 2px;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
-    margin-bottom: 15px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    margin-bottom: 5px;
   }
 
-  .welcome-subtitle {
-    font-size: clamp(16px, 2.5vw, 20px);
+  .hero-subtitle {
+    font-size: clamp(15px, 2.5vw, 20px);
     color: #e0e0e0;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
-    line-height: 1.6;
-    margin-bottom: 30px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+    max-width: 700px;
+    line-height: 1.5;
   }
 
-  .welcome-card {
-    background: rgba(20, 20, 25, 0.65);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  /* --- KUCING KARTUN INTERAKTIF (BISA DIANGKAT / DRAG) --- */
+  .climbing-cat-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    height: 70px;
+    position: relative;
+    width: 100%;
   }
 
-  .welcome-card p {
-    font-size: 15px;
-    color: #f1f1f1;
-    line-height: 1.7;
+  .cat-avatar {
+    width: 65px;
+    height: 65px;
+    cursor: grab;
+    position: absolute;
+    filter: drop-shadow(0 5px 10px rgba(0,0,0,0.5));
+    animation: climbWiggle 2s infinite ease-in-out;
+    user-select: none;
+    touch-action: none;
+    z-index: 99;
+  }
+
+  .cat-avatar:active {
+    cursor: grabbing;
+  }
+
+  /* Animasi goyangan lucu seperti sedang berusaha memanjat */
+  @keyframes climbWiggle {
+    0%, 100% { transform: rotate(-5deg) translateY(0); }
+    50% { transform: rotate(5deg) translateY(-6px); }
+  }
+
+  /* --- TOMBOL AKSI UTAMA --- */
+  .hero-btn {
+    background: #70b5ff;
+    color: #111111;
+    text-decoration: none;
+    padding: 14px 35px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 700;
+    box-shadow: 0 4px 20px rgba(112, 181, 255, 0.4);
+    transition: all 0.3s ease;
+    margin-top: 10px;
+  }
+
+  .hero-btn:hover {
+    background: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 25px rgba(255, 255, 255, 0.4);
   }
 
   /* --- FOOTER SOSIAL MEDIA --- */
@@ -146,7 +191,7 @@
     transform: translateY(-3px);
   }
 
-  /* Responsif Tampilan HP */
+  /* Responsif Tampilan HP / Tablet */
   @media (max-width: 768px) {
     .home-container {
       padding: 20px;
@@ -178,12 +223,15 @@
 
   <!-- Konten Utama Halaman Home -->
   <div class="main-content">
-    <div class="welcome-title">Welcome to BISPRO PNUP</div>
-    <div class="welcome-subtitle">Program Studi D4 Bisnis Profesional - Politeknik Negeri Ujung Pandang</div>
+    <div class="hero-title">Welcome to BISPRO PNUP</div>
+    <div class="hero-subtitle">Program Studi D4 Bisnis Profesional - Politeknik Negeri Ujung Pandang</div>
     
-    <div class="welcome-card">
-      <p>Selamat datang di portal resmi informasi akademik dan jadwal perkuliahan Mahasiswa BISPRO PNUP. Silakan pilih menu <strong>CLASS</strong> di atas untuk melihat jadwal mata kuliah dan informasi ruangan lengkap.</p>
+    <!-- Animasi Kucing Kartun Memanjat yang Bisa Diangkat/Digeser (Draggable) -->
+    <div class="climbing-cat-container">
+      <img src="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f408.png" alt="Kucing Memanjat" class="cat-avatar" id="draggableCat" title="Klik dan seret (angkat) saya!">
     </div>
+
+    <a href="class.html" class="hero-btn">Lihat Jadwal Kelas</a>
   </div>
 
   <!-- Bagian Bawah: Tautan Sosial Media -->
@@ -193,6 +241,35 @@
     <a href="https://instagram.com/bispropnup" target="_blank">@bispropnup</a>
   </div>
 </div>
+
+<!-- Skrip JavaScript untuk Interaksi Kucing -->
+<script>
+  const cat = document.getElementById('draggableCat');
+  let isDragging = false;
+  let startX, startY, initialX = 0, initialY = 0;
+
+  cat.addEventListener('pointerdown', (e) => {
+    isDragging = true;
+    cat.setPointerCapture(e.pointerId);
+    startX = e.clientX - initialX;
+    startY = e.clientY - initialY;
+    cat.style.animation = 'none'; // Hentikan animasi goyang sementara diangkat
+  });
+
+  cat.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    initialX = e.clientX - startX;
+    initialY = e.clientY - startY;
+    cat.style.transform = `translate(${initialX}px, ${initialY}px) scale(1.15)`;
+  });
+
+  cat.addEventListener('pointerup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    cat.releasePointerCapture(e.pointerId);
+    cat.style.animation = 'climbWiggle 2s infinite ease-in-out'; // Kembalikan animasi goyang
+  });
+</script>
 
 </body>
 </html>
