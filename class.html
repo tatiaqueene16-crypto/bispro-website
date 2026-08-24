@@ -5,140 +5,323 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BISPRO PNUP - Class</title>
 <style>
-  body {
+  * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
+  }
+
+  body, html {
     width: 100%;
     min-height: 100vh;
-    background: linear-gradient(135deg, #e6e0f8 0%, #d2c6ef 100%);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #2b2640;
-    box-sizing: border-box;
-  }
-
-  .bispro-container {
-    padding: 40px 20px;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .nav-header {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
-    padding: 8px 10px;
-    margin-bottom: 35px;
-    border-radius: 50px;
-    box-shadow: 0 8px 32px 0 rgba(90, 75, 129, 0.1);
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    display: flex;
-  }
-
-  .nav-header a {
-    text-decoration: none;
-    color: #4a3c6c;
-    font-weight: 600;
-    margin: 0 4px;
-    font-size: 14px;
-    padding: 10px 28px;
-    border-radius: 40px;
-    transition: all 0.4s ease;
-    display: inline-block;
-  }
-
-  .nav-header a.active {
-    background: linear-gradient(135deg, #5a4b81 0%, #7362a1 100%);
     color: #ffffff;
-    box-shadow: 0 6px 15px rgba(90, 75, 129, 0.3);
   }
 
-  .nav-header a:hover:not(.active) {
-    background: rgba(215, 205, 235, 0.5);
-    color: #3b3054;
-  }
-
-  .main-title {
-    color: #3b3054;
-    font-size: 40px;
-    font-weight: 800;
-    margin-bottom: 10px;
-    letter-spacing: -1px;
-  }
-
-  .main-subtitle {
-    color: #5c4e7d;
-    font-weight: 500;
-    font-size: 18px;
-    margin-bottom: 40px;
-  }
-
-  .content-box {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(15px);
-    text-align: left;
-    padding: 40px;
-    border-radius: 28px;
-    margin: 0 auto 30px auto;
-    box-shadow: 0 20px 45px rgba(90, 75, 129, 0.1);
-    max-width: 100%;
+  /* --- BACKGROUND UTAMA (SAMA PERSIS DENGAN HOME) --- */
+  .class-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), 
+                url('https://lh3.googleusercontent.com/d/14oVmG_H_0NTpWITJRXdKE7yhB0I56ww0') no-repeat center center fixed;
+    background-size: cover;
+    image-rendering: -webkit-optimize-contrast;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 40px;
     box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.8);
   }
 
-  .content-box h3 {
-    margin-top: 0;
-    color: #3b3054;
-    font-size: 24px;
-    font-weight: 700;
-    border-bottom: 3px solid #eae5f5;
-    padding-bottom: 15px;
+  /* --- HEADER (LOGO & MENU) --- */
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 10;
     margin-bottom: 20px;
   }
 
-  .content-box p {
-    font-size: 15px;
-    line-height: 1.9;
-    color: #4a4263;
-    margin-bottom: 25px;
+  .logo-img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
   }
 
-  .class-image-container {
-    text-align: center;
-    margin-top: 20px;
+  /* Menu Navigasi Kanan Atas */
+  .nav-menu {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 8px;
+    border-radius: 50px;
+    display: flex;
+    gap: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.6);
   }
 
-  .class-image {
+  .nav-menu a {
+    text-decoration: none;
+    color: #2b2b2b;
+    font-weight: 700;
+    font-size: 14.5px;
+    padding: 10px 30px;
+    border-radius: 40px;
+    letter-spacing: 0.5px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-menu a.active, .nav-menu a:hover {
+    background: #111111;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* --- KONTEN UTAMA HALAMAN KELAS --- */
+  .main-content {
+    max-width: 1000px;
     width: 100%;
-    max-width: 700px;
-    height: auto;
-    border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(90, 75, 129, 0.15);
-    border: 3px solid #ffffff;
+    margin: 0 auto;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 40px;
+  }
+
+  .page-title-box {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  .page-title {
+    font-size: clamp(32px, 5vw, 45px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    font-size: clamp(14px, 2vw, 17px);
+    color: #e0e0e0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  /* --- KOTAK WRAPPER TABEL (GLASSMORPHISM) --- */
+  .table-card {
+    background: rgba(20, 20, 25, 0.65);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  }
+
+  .table-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: #ffffff;
+    border-left: 4px solid #70b5ff;
+    padding-left: 12px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  }
+
+  /* Desain Tabel Modern */
+  .custom-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14.5px;
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 14px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .custom-table th {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 13px;
+  }
+
+  .custom-table tr {
+    transition: background 0.2s ease;
+  }
+
+  .custom-table tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+  }
+
+  .custom-table td {
+    color: #f1f1f1;
+  }
+
+  /* --- FOOTER SOSIAL MEDIA --- */
+  .footer-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+    z-index: 10;
+    padding-top: 20px;
+  }
+
+  .footer-bottom a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .footer-bottom a:hover {
+    color: #70b5ff;
+    transform: translateY(-3px);
+  }
+
+  /* Responsif Tampilan HP / Tablet */
+  @media (max-width: 768px) {
+    .class-container {
+      padding: 20px;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .nav-menu a {
+      padding: 8px 18px;
+      font-size: 13px;
+    }
+    .table-card {
+      padding: 15px;
+    }
+    .custom-table th, .custom-table td {
+      padding: 10px 12px;
+      font-size: 13px;
+    }
   }
 </style>
 </head>
 <body>
 
-<div class="bispro-container">
-  <div class="nav-header">
-    <a href="index.html">Home</a>
-    <a href="class.html" class="active">Class</a>
+<div class="class-container">
+  <!-- Bagian Atas: Logo & Menu Navigasi -->
+  <div class="header-top">
+    <img src="https://lh3.googleusercontent.com/d/1dlXujStWQ5VyDArzjLhR1VpqVaJ9k1oj" alt="Logo PNUP" class="logo-img">
+
+    <div class="nav-menu">
+      <a href="index.html">HOME</a>
+      <a href="class.html" class="active">CLASS</a>
+    </div>
   </div>
 
-  <div class="main-title">Class Information</div>
-  <div class="main-subtitle">Jadwal dan Informasi Perkuliahan BISPRO</div>
-
-  <div class="content-box">
-    <h3>Materi & Informasi Kelas</h3>
-    <p>Selamat datang di halaman informasi kelas Program Studi Bahasa Inggris untuk Komunikasi Bisnis dan Profesional (BISPRO PNUP). Berikut adalah lampiran informasi atau jadwal materi kelas Anda:</p>
-    
-    <div class="class-image-container">
-      <img src="https://lh3.googleusercontent.com/d/1JQBNFWXIs7nWb2-Wq0JP20s-FlJH2H_n" alt="Materi Kelas BISPRO" class="class-image">
+  <!-- Konten Utama: Tabel Informasi Kelas -->
+  <div class="main-content">
+    <div class="page-title-box">
+      <div class="page-title">Class Information</div>
+      <div class="page-subtitle">Jadwal Perkuliahan & Informasi Akademik BISPRO PNUP</div>
     </div>
+
+    <!-- Tabel 1: Jadwal Mata Kuliah -->
+    <div class="table-card">
+      <h3>Jadwal Mata Kuliah Utama</h3>
+      <div class="custom-table-wrap">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>Hari</th>
+              <th>Waktu</th>
+              <th>Mata Kuliah</th>
+              <th>Ruangan / Kelas</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Senin</td>
+              <td>08.00 - 10.30</td>
+              <td>Business Correspondence & Translation</td>
+              <td>Lab Komputer / BISPRO 24</td>
+            </tr>
+            <tr>
+              <td>Selasa</td>
+              <td>10.45 - 13.15</td>
+              <td>Professional Public Speaking</td>
+              <td>Ruang Teater / BISPRO 24</td>
+            </tr>
+            <tr>
+              <td>Rabu</td>
+              <td>08.00 - 11.40</td>
+              <td>Cross-Cultural Business Communication</td>
+              <td>Lab Bahasa / BISPRO 24</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tabel 2: Informasi Dosen & Pengampu -->
+    <div class="table-card">
+      <h3>Dosen Pengampu & Pembimbing Akademik</h3>
+      <div class="custom-table-wrap">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Nama Dosen</th>
+              <th>Mata Kuliah / Peran</th>
+              <th>Kontak / Email</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Dra. Farida Amansyah, M.A.</td>
+              <td>Ketua Prodi / Dosen Pembimbing</td>
+              <td>farida@politeknikupg.ac.id</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Tim Pengajar BISPRO</td>
+              <td>English for Business & Professional</td>
+              <td>bispro@politeknikupg.ac.id</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Administrasi Akademik</td>
+              <td>Layanan Kemahasiswaan & Akademik</td>
+              <td>an@politeknikupg.ac.id</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bagian Bawah: Tautan Sosial Media -->
+  <div class="footer-bottom">
+    <a href="https://instagram.com/anpnupofficial" target="_blank">@anpnupofficial</a>
+    <a href="http://an.politeknikupg.ac.id" target="_blank">an.poliupg.ac.id</a>
+    <a href="https://instagram.com/bispropnup" target="_blank">@bispropnup</a>
   </div>
 </div>
 
