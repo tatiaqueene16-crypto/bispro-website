@@ -90,13 +90,13 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 25px;
     padding-bottom: 40px;
   }
 
   .page-title-box {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
 
   .page-title {
@@ -114,7 +114,56 @@
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
   }
 
-  /* --- KOTAK WRAPPER (GLASSMORPHISM) --- */
+  /* --- KOTAK CARD TERPISAH UNTUK BOOKING KELAS --- */
+  .booking-card {
+    background: rgba(20, 20, 25, 0.65);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(112, 181, 255, 0.3);
+    border-radius: 20px;
+    padding: 20px 25px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .booking-info h4 {
+    font-size: 17px;
+    color: #ffffff;
+    margin-bottom: 5px;
+    font-weight: 700;
+  }
+
+  .booking-info p {
+    font-size: 13px;
+    color: #dcdcdc;
+    font-style: italic;
+    line-height: 1.4;
+  }
+
+  .booking-btn {
+    background: #70b5ff;
+    color: #111111;
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 14.5px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(112, 181, 255, 0.4);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .booking-btn:hover {
+    background: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
+  }
+
+  /* --- KOTAK WRAPPER UTAMA (TABEL & PILIHAN ANGKATAN) --- */
   .table-card {
     background: rgba(20, 20, 25, 0.65);
     backdrop-filter: blur(15px);
@@ -133,47 +182,6 @@
     border-left: 4px solid #70b5ff;
     padding-left: 12px;
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
-  }
-
-  /* --- TOMBOL BOOKING KELAS ---. */
-  .booking-section {
-    text-align: center;
-    background: rgba(112, 181, 255, 0.1);
-    border: 1px dashed rgba(112, 181, 255, 0.4);
-    border-radius: 15px;
-    padding: 20px;
-    margin-bottom: 25px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .booking-btn {
-    display: inline-block;
-    background: #70b5ff;
-    color: #111111;
-    text-decoration: none;
-    padding: 12px 32px;
-    border-radius: 30px;
-    font-size: 16px;
-    font-weight: 700;
-    box-shadow: 0 4px 15px rgba(112, 181, 255, 0.4);
-    transition: all 0.3s ease;
-  }
-
-  .booking-btn:hover {
-    background: #ffffff;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
-  }
-
-  .booking-note {
-    font-size: 13.5px;
-    color: #dcdcdc;
-    font-style: italic;
-    max-width: 600px;
-    line-height: 1.4;
   }
 
   /* --- PILIHAN ANGKATAN (BUTTON TABS) --- */
@@ -269,7 +277,7 @@
     justify-content: center;
     gap: 45px;
     z-index: 10;
-    padding-top: 20px;
+    padding-top: 10px;
   }
 
   .footer-bottom a {
@@ -300,8 +308,17 @@
       padding: 8px 18px;
       font-size: 13px;
     }
-    .table-card {
+    .table-card, .booking-card {
       padding: 15px;
+    }
+    .booking-card {
+      flex-direction: column;
+      align-items: stretch;
+      text-align: center;
+    }
+    .booking-btn {
+      width: 100%;
+      text-align: center;
     }
     .batch-selector {
       flex-direction: column;
@@ -338,15 +355,18 @@
       <div class="page-subtitle">Pilih Angkatan & Lihat Jadwal Mata Kuliah BISPRO PNUP</div>
     </div>
 
-    <!-- Kotak Utama: Pilih Angkatan Terlebih Dahulu -->
+    <!-- Kotak Terpisah Khusus Booking Kelas (Tidak Menghalangi Tabel) -->
+    <div class="booking-card">
+      <div class="booking-info">
+        <h4>Peminjaman / Booking Ruang Kelas</h4>
+        <p>*Catatan: Fitur booking kelas ini hanya dapat diakses oleh mahasiswa yang akunnya sudah didaftarkan sebelumnya pada staf/admin.</p>
+      </div>
+      <a href="http://10.0.14.55/dashboard.php?msg=success" class="booking-btn" target="_blank">Booking Kelas Sekarang</a>
+    </div>
+
+    <!-- Kotak Utama: Pilih Angkatan Terlebih Dahulu & Tabel Jadwal -->
     <div class="table-card">
       <h3>Pilih Angkatan Mahasiswa</h3>
-
-      <!-- Tombol & Catatan Booking Kelas -->
-      <div class="booking-section">
-        <a href="http://10.0.14.55/dashboard.php?msg=success" class="booking-btn" target="_blank">Booking Kelas Sekarang</a>
-        <p class="booking-note">*Catatan: Fitur booking kelas ini hanya dapat diakses oleh mahasiswa yang akunnya sudah didaftarkan sebelumnya pada staf/admin.</p>
-      </div>
       
       <!-- Tombol Pilihan Angkatan -->
       <div class="batch-selector">
