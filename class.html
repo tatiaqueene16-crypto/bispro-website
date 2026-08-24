@@ -18,7 +18,7 @@
     color: #ffffff;
   }
 
-  /* --- BACKGROUND UTAMA (SAMA PERSIS DENGAN HOME) --- */
+  /* --- BACKGROUND UTAMA --- */
   .class-container {
     position: relative;
     width: 100%;
@@ -51,7 +51,6 @@
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
   }
 
-  /* Menu Navigasi Kanan Atas */
   .nav-menu {
     background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(12px);
@@ -82,7 +81,7 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
   }
 
-  /* --- KONTEN UTAMA HALAMAN KELAS --- */
+  /* --- KONTEN UTAMA --- */
   .main-content {
     max-width: 1000px;
     width: 100%;
@@ -115,7 +114,7 @@
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
   }
 
-  /* --- KOTAK WRAPPER TABEL (GLASSMORPHISM) --- */
+  /* --- KOTAK WRAPPER (GLASSMORPHISM) --- */
   .table-card {
     background: rgba(20, 20, 25, 0.65);
     backdrop-filter: blur(15px);
@@ -134,6 +133,54 @@
     border-left: 4px solid #70b5ff;
     padding-left: 12px;
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  }
+
+  /* --- PILIHAN ANGKATAN (BUTTON TABS) --- */
+  .batch-selector {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+  }
+
+  .batch-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+  }
+
+  .batch-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+  }
+
+  .batch-btn.active {
+    background: #70b5ff;
+    color: #111111;
+    border-color: #70b5ff;
+    box-shadow: 0 4px 15px rgba(112, 181, 255, 0.4);
+  }
+
+  /* Konten Jadwal per Angkatan */
+  .schedule-content {
+    display: none;
+  }
+
+  .schedule-content.active-schedule {
+    display: block;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
   }
 
   /* Desain Tabel Modern */
@@ -215,6 +262,14 @@
     .table-card {
       padding: 15px;
     }
+    .batch-selector {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .batch-btn {
+      width: 100%;
+      text-align: center;
+    }
     .custom-table th, .custom-table td {
       padding: 10px 12px;
       font-size: 13px;
@@ -235,48 +290,129 @@
     </div>
   </div>
 
-  <!-- Konten Utama: Tabel Informasi Kelas -->
+  <!-- Konten Utama Halaman Kelas -->
   <div class="main-content">
     <div class="page-title-box">
       <div class="page-title">Class Information</div>
-      <div class="page-subtitle">Daftar Angkatan & Dosen Pengampu Program Studi D4 BISPRO PNUP</div>
+      <div class="page-subtitle">Pilih Angkatan & Lihat Jadwal Mata Kuliah BISPRO PNUP</div>
     </div>
 
-    <!-- Tabel 1: Jadwal / Kelas Berdasarkan Angkatan -->
+    <!-- Kotak Utama: Pilih Angkatan Terlebih Dahulu -->
     <div class="table-card">
-      <h3>Jadwal & Mata Kuliah Berdasarkan Angkatan (3 Kelas)</h3>
-      <div class="custom-table-wrap">
-        <table class="custom-table">
-          <thead>
-            <tr>
-              <th>Angkatan / Kelas</th>
-              <th>Semester / Tingkat</th>
-              <th>Fokus Mata Kuliah Utama</th>
-              <th>Ruangan / Sesi</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Angkatan 3</strong> (Mahasiswa Baru / Tingkat 1)</td>
-              <td>Semester 2</td>
-              <td>Foundations of Business English & Basic Communication</td>
-              <td>Lab Bahasa / Ruang Teater</td>
-            </tr>
-            <tr>
-              <td><strong>Angkatan 2</strong> (Tingkat 2)</td>
-              <td>Semester 4</td>
-              <td>Business Correspondence, Translation & Public Speaking</td>
-              <td>Lab Komputer / BISPRO 24</td>
-            </tr>
-            <tr>
-              <td><strong>Angkatan 1</strong> (Senior / Tingkat 3)</td>
-              <td>Semester 6</td>
-              <td>Cross-Cultural Business Communication & Professional Project</td>
-              <td>Ruang Diskusi / Utama</td>
-            </tr>
-          </tbody>
-        </table>
+      <h3>Pilih Angkatan Mahasiswa</h3>
+      
+      <!-- Tombol Pilihan Angkatan -->
+      <div class="batch-selector">
+        <button class="batch-btn active" onclick="switchBatch('2026', event)">Angkatan 2026</button>
+        <button class="batch-btn" onclick="switchBatch('2025', event)">Angkatan 2025</button>
+        <button class="batch-btn" onclick="switchBatch('2024', event)">Angkatan 2024</button>
       </div>
+
+      <!-- TABEL JADWAL: ANGKATAN 2026 -->
+      <div id="batch-2026" class="schedule-content active-schedule">
+        <h3 style="border-left-color: #70b5ff; font-size: 17px; margin-top: 10px;">Jadwal Mata Kuliah - Angkatan 2026</h3>
+        <div class="custom-table-wrap">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Hari</th>
+                <th>Waktu</th>
+                <th>Mata Kuliah Dasar</th>
+                <th>Ruangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Senin</td>
+                <td>08.00 - 10.30</td>
+                <td>Foundations of Business English</td>
+                <td>Lab Bahasa / Teater</td>
+              </tr>
+              <tr>
+                <td>Selasa</td>
+                <td>10.45 - 13.15</td>
+                <td>Basic Business Communication</td>
+                <td>Ruang Kelas 26</td>
+              </tr>
+              <tr>
+                <td>Rabu</td>
+                <td>08.00 - 11.40</td>
+                <td>Introduction to Professional Skills</td>
+                <td>Lab Komputer</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABEL JADWAL: ANGKATAN 2025 -->
+      <div id="batch-2025" class="schedule-content">
+        <h3 style="border-left-color: #70b5ff; font-size: 17px; margin-top: 10px;">Jadwal Mata Kuliah - Angkatan 2025</h3>
+        <div class="custom-table-wrap">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Hari</th>
+                <th>Waktu</th>
+                <th>Mata Kuliah Menengah</th>
+                <th>Ruangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Senin</td>
+                <td>10.45 - 13.15</td>
+                <td>Business Correspondence & Translation</td>
+                <td>Lab Komputer / BISPRO 24</td>
+              </tr>
+              <tr>
+                <td>Selasa</td>
+                <td>08.00 - 10.30</td>
+                <td>Professional Public Speaking</td>
+                <td>Ruang Teater</td>
+              </tr>
+              <tr>
+                <td>Rabu</td>
+                <td>13.30 - 16.00</td>
+                <td>Intermediate Cross-Cultural Communication</td>
+                <td>Lab Bahasa</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TABEL JADWAL: ANGKATAN 2024 -->
+      <div id="batch-2024" class="schedule-content">
+        <h3 style="border-left-color: #70b5ff; font-size: 17px; margin-top: 10px;">Jadwal Mata Kuliah - Angkatan 2024</h3>
+        <div class="custom-table-wrap">
+          <table class="custom-table">
+            <thead>
+              <tr>
+                <th>Hari</th>
+                <th>Waktu</th>
+                <th>Mata Kuliah Tingkat Lanjut</th>
+                <th>Ruangan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Kamis</td>
+                <td>08.00 - 11.40</td>
+                <td>Advanced Cross-Cultural Business Communication</td>
+                <td>Ruang Diskusi Utama</td>
+              </tr>
+              <tr>
+                <td>Jumat</td>
+                <td>08.00 - 12.00</td>
+                <td>Professional Project & Business Execution</td>
+                <td>Lab Terpadu BISPRO</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
     </div>
 
     <!-- Tabel 2: Dosen Pengampu -->
@@ -330,6 +466,25 @@
     <a href="https://instagram.com/bispropnup" target="_blank">@bispropnup</a>
   </div>
 </div>
+
+<!-- Skrip JavaScript untuk Mengganti Jadwal Berdasarkan Angkatan -->
+<script>
+  function switchBatch(year, event) {
+    // Sembunyikan semua jadwal
+    const contents = document.querySelectorAll('.schedule-content');
+    contents.forEach(el => el.classList.remove('active-schedule'));
+
+    // Hilangkan status aktif dari semua tombol
+    const buttons = document.querySelectorAll('.batch-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    // Tampilkan jadwal sesuai angkatan yang dipilih
+    document.getElementById('batch-' + year).classList.add('active-schedule');
+
+    // Berikan efek aktif pada tombol yang diklik
+    event.currentTarget.classList.add('active');
+  }
+</script>
 
 </body>
 </html>
