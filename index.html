@@ -5,119 +5,139 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BISPRO PNUP - Home</title>
 <style>
+  /* --- RESET DASAR --- */
   body {
     margin: 0;
     padding: 0;
     width: 100%;
+    min-height: 100vh;
     background: linear-gradient(135deg, #e6e0f8 0%, #d2c6ef 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #2b2640;
     box-sizing: border-box;
   }
 
+  /* --- CONTAINER UTAMA --- */
   .bispro-container {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #2b2640;
     padding: 40px 20px;
-    box-sizing: border-box;
     width: 100%;
-    max-width: 900px;
+    max-width: 900px; /* Batasi lebar agar rapi di layar besar */
     margin: 0 auto;
     text-align: center;
   }
 
+  /* --- NAVIGASI (HEADER) --- */
   .nav-header {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
-    padding: 8px 0;
+    padding: 8px 10px; /* Sedikit padding samping */
     margin-bottom: 35px;
-    border-radius: 30px;
+    border-radius: 50px; /* Pill shape yang lebih membulat */
     box-shadow: 0 8px 32px 0 rgba(90, 75, 129, 0.1);
-    max-width: 280px;
+    width: fit-content; /* Sesuaikan lebar dengan konten */
     margin-left: auto;
     margin-right: auto;
     border: 1px solid rgba(255, 255, 255, 0.5);
+    display: flex; /* Mengatur tombol agar berdampingan */
   }
 
   .nav-header a {
     text-decoration: none;
     color: #4a3c6c;
     font-weight: 600;
-    margin: 0 6px;
+    margin: 0 4px;
     font-size: 14px;
-    padding: 8px 20px;
-    border-radius: 20px;
-    transition: all 0.3s ease;
+    padding: 10px 28px; /* Padding tombol yang lebih luas */
+    border-radius: 40px; /* Pill shape dalam */
+    transition: all 0.4s ease;
     display: inline-block;
   }
 
-  .nav-header a.active, .nav-header a:hover {
+  .nav-header a.active { /* Gaya untuk tombol aktif */
     background: linear-gradient(135deg, #5a4b81 0%, #7362a1 100%);
     color: #ffffff;
-    transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(90, 75, 129, 0.3);
   }
 
+  .nav-header a:hover:not(.active) { /* Gaya hover untuk tombol tidak aktif */
+    background: rgba(215, 205, 235, 0.5);
+    color: #3b3054;
+  }
+
+  /* --- JUDUL & SUBJUDUL --- */
   .main-title {
     color: #3b3054;
-    font-size: 36px;
+    font-size: 40px; /* Sedikit lebih besar untuk impact */
     font-weight: 800;
-    margin-bottom: 8px;
-    letter-spacing: -0.5px;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
   }
 
   .main-subtitle {
     color: #5c4e7d;
     font-weight: 500;
-    font-size: 16px;
-    margin-bottom: 40px;
+    font-size: 18px;
+    margin-bottom: 50px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
+  /* --- KARTU PROFIL (CARD) --- */
   .profile-card {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
-    border-radius: 24px;
-    padding: 30px 25px;
-    box-shadow: 0 15px 35px rgba(90, 75, 129, 0.08);
+    background: rgba(255, 255, 255, 0.95); /* Sedikit lebih opaque */
+    backdrop-filter: blur(15px);
+    border-radius: 28px;
+    padding: 40px 30px;
+    box-shadow: 0 20px 45px rgba(90, 75, 129, 0.1);
     display: inline-block;
     width: 100%;
-    max-width: 340px;
-    margin-bottom: 30px;
+    max-width: 400px; /* Lebar kartu */
+    margin-bottom: 40px;
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, 0.8);
+    transition: transform 0.3s ease;
+  }
+
+  .profile-card:hover {
+    transform: translateY(-5px); /* Efek angkat saat hover */
   }
 
   .profile-img {
-    width: 200px;
-    height: 250px;
+    width: 160px; /* Ukuran foto */
+    height: 160px;
     object-fit: cover;
-    border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    margin-bottom: 18px;
+    border-radius: 50%; /* Foto menjadi lingkaran */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    border: 4px solid #ffffff;
   }
 
   .profile-name {
-    font-size: 19px;
+    font-size: 22px;
     font-weight: 700;
     color: #2b2640;
-    margin: 8px 0 6px 0;
+    margin: 0 0 8px 0;
   }
 
   .profile-title {
-    font-size: 13px;
+    font-size: 15px;
     color: #6c5f8e;
-    line-height: 1.5;
+    line-height: 1.6;
     margin: 0;
     font-weight: 500;
   }
 
+  /* --- KOTAK DESKRIPSI --- */
   .description-box {
-    background: rgba(255, 255, 255, 0.9);
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
     text-align: left;
-    padding: 35px;
-    border-radius: 24px;
-    margin: 0 auto 30px auto;
-    box-shadow: 0 15px 35px rgba(90, 75, 129, 0.08);
-    max-width: 100%;
+    padding: 40px;
+    border-radius: 28px;
+    margin: 0 auto 40px auto;
+    box-shadow: 0 20px 45px rgba(90, 75, 129, 0.1);
+    max-width: 100%; /* Mengikuti max-width container */
     box-sizing: border-box;
     border: 1px solid rgba(255, 255, 255, 0.8);
   }
@@ -125,31 +145,32 @@
   .description-box h3 {
     margin-top: 0;
     color: #3b3054;
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
-    border-bottom: 2px solid #eae5f5;
-    padding-bottom: 12px;
-    margin-bottom: 20px;
+    border-bottom: 3px solid #eae5f5;
+    padding-bottom: 15px;
+    margin-bottom: 25px;
   }
 
   .description-box p {
-    font-size: 14px;
-    line-height: 1.8;
+    font-size: 15px;
+    line-height: 1.9;
     color: #4a4263;
-    margin-bottom: 18px;
+    margin-bottom: 22px;
     text-align: justify;
   }
 
+  /* --- FOOTER --- */
   .footer-section {
     background: rgba(215, 205, 235, 0.7);
     backdrop-filter: blur(10px);
-    padding: 25px 30px;
-    border-radius: 20px;
+    padding: 30px;
+    border-radius: 24px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
     text-align: left;
-    gap: 22px;
+    gap: 25px;
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
@@ -157,32 +178,33 @@
   }
 
   .footer-logo {
-    width: 75px;
-    height: 75px;
+    width: 85px;
+    height: 85px;
     object-fit: contain;
     flex-shrink: 0;
   }
 
   .footer-content {
-    font-size: 13px;
+    font-size: 14px;
     color: #3b3054;
   }
 
   .footer-title {
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: #2b2640;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .footer-links div {
-    margin-bottom: 5px;
+    margin-bottom: 6px;
   }
 
   .footer-links a {
     color: #4a3c6c;
     text-decoration: none;
     font-weight: 500;
+    transition: color 0.3s ease;
   }
 
   .footer-links a:hover {
@@ -190,15 +212,23 @@
     text-decoration: underline;
   }
 
+  /* --- RESPONSIVE (Mobile View) --- */
   @media (max-width: 600px) {
-    .main-title { font-size: 28px; }
-    .footer-section { flex-direction: column; text-align: center; }
+    .main-title { font-size: 32px; }
+    .main-subtitle { font-size: 16px; }
+    .nav-header { padding: 6px 8px; }
+    .nav-header a { padding: 8px 18px; font-size: 13px; margin: 0 2px;}
+    .profile-card { padding: 30px 20px; }
+    .description-box { padding: 25px; }
+    .description-box h3 { font-size: 20px; }
+    .footer-section { flex-direction: column; text-align: center; padding: 20px; gap: 15px;}
   }
 </style>
 </head>
 <body>
 
 <div class="bispro-container">
+  <!-- Navigasi yang sudah diperbaiki link-nya -->
   <div class="nav-header">
     <a href="index.html" class="active">Home</a>
     <a href="class.html">Class</a>
@@ -209,7 +239,8 @@
 
   <div class="profile-card">
     <div class="profile-img-container">
-      <img src="URL_FOTO_ANDA_DI_SINI" alt="Foto Ketua Prodi" class="profile-img">
+      <!-- Ganti URL_FOTO_ANDA_DI_SINI dengan link langsung foto Ketua Prodi -->
+      <img src="https://i.imgur.com/7KxGj8T.png" alt="Foto Ketua Prodi" class="profile-img">
     </div>
     <div class="profile-name">Dra. Farida Amansyah, M.A.</div>
     <div class="profile-title">
@@ -232,6 +263,7 @@
   </div>
 
   <div class="footer-section">
+    <!-- Pastikan URL logo ini dapat diakses secara publik -->
     <img src="https://lh3.googleusercontent.com/d/1dlXujStWQ5VyDArzjLhR1VpqVaJ9k1oj" alt="Logo PNUP" class="footer-logo">
     <div class="footer-content">
       <div class="footer-title">English for Business And Professional Communication</div>
