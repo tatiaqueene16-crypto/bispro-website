@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BISPRO PNUP - Class</title>
 <style>
-  /* --- RESET & STYLING UMUM (Sama seperti Home) --- */
   body {
     margin: 0;
     padding: 0;
@@ -25,7 +24,6 @@
     text-align: center;
   }
 
-  /* --- NAVIGASI (Header) --- */
   .nav-header {
     background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(10px);
@@ -53,4 +51,99 @@
   }
 
   .nav-header a.active {
-    background: linear-gradient(135deg, #5a4b
+    background: linear-gradient(135deg, #5a4b81 0%, #7362a1 100%);
+    color: #ffffff;
+    box-shadow: 0 6px 15px rgba(90, 75, 129, 0.3);
+  }
+
+  .nav-header a:hover:not(.active) {
+    background: rgba(215, 205, 235, 0.5);
+    color: #3b3054;
+  }
+
+  .main-title {
+    color: #3b3054;
+    font-size: 40px;
+    font-weight: 800;
+    margin-bottom: 10px;
+    letter-spacing: -1px;
+  }
+
+  .main-subtitle {
+    color: #5c4e7d;
+    font-weight: 500;
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+
+  .content-box {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    text-align: left;
+    padding: 40px;
+    border-radius: 28px;
+    margin: 0 auto 30px auto;
+    box-shadow: 0 20px 45px rgba(90, 75, 129, 0.1);
+    max-width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  .content-box h3 {
+    margin-top: 0;
+    color: #3b3054;
+    font-size: 24px;
+    font-weight: 700;
+    border-bottom: 3px solid #eae5f5;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+  }
+
+  .content-box p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: #4a4263;
+    margin-bottom: 25px;
+  }
+
+  /* --- STYLE UNTUK GAMBAR KELAS / MATERI --- */
+  .class-image-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .class-image {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(90, 75, 129, 0.15);
+    border: 3px solid #ffffff;
+  }
+</style>
+</head>
+<body>
+
+<div class="bispro-container">
+  <!-- Navigasi -->
+  <div class="nav-header">
+    <a href="index.html">Home</a>
+    <a href="class.html" class="active">Class</a>
+  </div>
+
+  <div class="main-title">Class Information</div>
+  <div class="main-subtitle">Jadwal dan Informasi Perkuliahan BISPRO</div>
+
+  <div class="content-box">
+    <h3>Materi & Informasi Kelas</h3>
+    <p>Selamat datang di halaman informasi kelas Program Studi Bahasa Inggris untuk Komunikasi Bisnis dan Profesional (BISPRO PNUP). Berikut adalah lampiran informasi atau jadwal materi kelas Anda:</p>
+    
+    <!-- Bagian Tampil Gambar Google Drive -->
+    <div class="class-image-container">
+      <img src="https://lh3.googleusercontent.com/d/1JQBNFWXIs7nWb2-Wq0JP20s-FlJH2H_n" alt="Materi Kelas BISPRO" class="class-image">
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
