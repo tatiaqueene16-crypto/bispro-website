@@ -18,14 +18,15 @@
     overflow: hidden;
   }
 
-  /* --- BACKGROUND DENGAN GRADASI HITAM --- */
+  /* --- BACKGROUND DENGAN POSISI PAS DI TENGAH --- */
   .hero-container {
     position: relative;
     width: 100vw;
     height: 100vh;
     background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.65)), 
-                url('https://lh3.googleusercontent.com/d/1J8JKnzd0ReTihiBgj9N_zYxd1AgPE_aA') no-repeat center center fixed;
-    background-size: cover;
+                url('https://lh3.googleusercontent.com/d/1J8JKnzd0ReTihiBgj9N_zYxd1AgPE_aA') no-repeat center center;
+    background-size: contain; /* Mengatur agar seluruh foto terlihat utuh tanpa terpotong */
+    background-color: #111; /* Memberikan latar warna hitam di sisi samping jika layar lebih lebar */
     display: flex;
     flex-direction: column;
     justify-content: space-between;
