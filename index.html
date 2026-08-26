@@ -18,7 +18,7 @@
     color: #ffffff;
   }
 
-  /* --- BACKGROUND UTAMA (Disamakan dengan class & database) --- */
+  /* --- BACKGROUND UTAMA (Tampilan Desktop/Default) --- */
   .hero-container {
     position: relative;
     width: 100%;
@@ -174,10 +174,14 @@
     transform: translateY(-3px);
   }
 
-  /* Responsif Tampilan HP / Tablet */
+  /* --- Responsif Tampilan HP / Tablet (Background Mobile Khusus) --- */
   @media (max-width: 768px) {
     .hero-container {
       padding: 20px 15px;
+      /* Background khusus tampilan mobile (menggunakan link Google Drive Anda) */
+      background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.75)), 
+                  url('https://lh3.googleusercontent.com/d/1WzTiV2afF1CFAe-CL9Zv6s8VvXQ9r34p') no-repeat center center fixed;
+      background-size: cover;
     }
 
     .header-top {
