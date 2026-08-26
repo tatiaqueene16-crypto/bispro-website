@@ -18,7 +18,7 @@
     color: #ffffff;
   }
 
-  /* --- BACKGROUND UTAMA --- */
+  /* --- BACKGROUND UTAMA (Tampilan Desktop/Default) --- */
   .class-container {
     position: relative;
     width: 100%;
@@ -295,10 +295,14 @@
     transform: translateY(-3px);
   }
 
-  /* Responsif Tampilan HP / Tablet */
+  /* --- Responsif Tampilan HP / Tablet (Background Mobile Khusus & Lebih Terang) --- */
   @media (max-width: 768px) {
     .class-container {
       padding: 20px 15px;
+      /* Background mobile baru dengan efek gelap yang lebih tipis agar lebih terang */
+      background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.45)), 
+                  url('https://lh3.googleusercontent.com/d/11JCY2sI97JlJGCnF0tabMTiawV0cHYdm') no-repeat center center fixed;
+      background-size: cover;
     }
 
     /* Penyesuaian Header Mobile */
