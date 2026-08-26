@@ -135,7 +135,7 @@
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
   }
 
-  /* --- DESAIN POLLING / UNDIAN NAMA DIGITAL --- */
+  /* --- DESAIN POLLING BUNDAR (DIGITAL PICKER) --- */
   .picker-section {
     text-align: center;
     display: flex;
@@ -146,42 +146,46 @@
 
   .picker-box-container {
     width: 100%;
-    max-width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 15px;
   }
 
-  .winner-display-box {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
-    border: 2px solid rgba(56, 189, 248, 0.4);
-    padding: 30px 20px;
-    border-radius: 20px;
-    width: 100%;
-    box-shadow: inset 0 2px 10px rgba(255,255,255,0.05), 0 15px 35px rgba(0,0,0,0.5);
+  /* Kotak Undian Berbentuk Bundar */
+  .winner-display-circle {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+    border: 4px solid #38bdf8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.35), inset 0 0 20px rgba(0,0,0,0.6);
     position: relative;
     overflow: hidden;
   }
 
   #wheel-display {
-    font-size: clamp(24px, 4vw, 32px);
+    font-size: clamp(18px, 3vw, 22px);
     font-weight: 800;
     color: #38bdf8;
     letter-spacing: 0.5px;
-    text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
-    min-height: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    text-align: center;
+    line-height: 1.3;
   }
 
   #winner-announcement {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 600;
     color: #34d399;
     min-height: 24px;
     text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    margin-top: 5px;
   }
 
   .spin-btn {
@@ -211,7 +215,13 @@
     cursor: not-allowed;
   }
 
-  /* --- TABEL DATA MAHASISWA --- */
+  /* --- TABEL DATA MAHASISWA & CHECKBOX KEHADIRAN --- */
+  .table-header-info {
+    font-size: 13.5px;
+    color: #94a3b8;
+    margin-bottom: 15px;
+  }
+
   .custom-table-wrap {
     width: 100%;
     overflow-x: auto;
@@ -252,6 +262,14 @@
 
   .custom-table td {
     color: #f1f5f9;
+  }
+
+  /* Gaya Checkbox Kehadiran */
+  .attendance-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #38bdf8;
+    cursor: pointer;
   }
 
   /* --- FOOTER SOSIAL MEDIA --- */
@@ -331,13 +349,13 @@
       <div class="page-subtitle">Daftar Mahasiswa & Fitur Undian Nama Mahasiswa</div>
     </div>
 
-    <!-- Bagian Polling / Undian Nama Digital -->
+    <!-- Bagian Polling / Undian Bundar -->
     <div class="content-card picker-section">
       <h3>Undian Nama Mahasiswa</h3>
       
       <div class="picker-box-container">
-        <div class="winner-display-box">
-          <div id="wheel-display">Tekan Tombol Mulai Di Bawah</div>
+        <div class="winner-display-circle">
+          <div id="wheel-display">Tekan Tombol Mulai</div>
         </div>
         <div id="winner-announcement"></div>
       </div>
@@ -345,13 +363,16 @@
       <button class="spin-btn" id="spinBtn" onclick="startPicking()">Mulai Undian 🎲</button>
     </div>
 
-    <!-- Bagian Tabel Data Mahasiswa -->
+    <!-- Bagian Tabel Data Mahasiswa & Status Kehadiran -->
     <div class="content-card">
       <h3>Daftar Mahasiswa Angkatan 2024</h3>
+      <div class="table-header-info">ℹ️ Hilangkan centang pada kolom <strong>Hadir</strong> jika mahasiswa berhalangan hadir, sehingga tidak ikut terundi namun namanya tetap tercatat di tabel.</div>
+      
       <div class="custom-table-wrap">
         <table class="custom-table">
           <thead>
             <tr>
+              <th style="width: 70px; text-align: center;">Hadir</th>
               <th>No</th>
               <th>NIM</th>
               <th>Nama Mahasiswa</th>
@@ -385,44 +406,72 @@
     { nim: "42524007", name: "Fajar Pratama" }
   ];
 
-  // Render Tabel Mahasiswa
+  // Render Tabel Mahasiswa lengkap dengan Checkbox Kehadiran
   const tableBody = document.getElementById('student-table-body');
-  students.forEach((student, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${student.nim}</td>
-      <td>${student.name}</td>
-    `;
-    tableBody.appendChild(row);
-  });
+  
+  function renderTable() {
+    tableBody.innerHTML = "";
+    students.forEach((student, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td style="text-align: center;">
+          <input type="checkbox" class="attendance-checkbox" checked data-index="${index}">
+        </td>
+        <td>${index + 1}</td>
+        <td>${student.nim}</td>
+        <td>${student.name}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  renderTable();
 
   let isPicking = false;
 
-  // Fungsi Undian Nama Digital (Tanpa Roda Berputar)
+  // Fungsi Undian dengan Filter Kehadiran
   function startPicking() {
     if (isPicking) return;
-    isPicking = true;
+
+    // Ambil daftar mahasiswa yang status checkbox-nya tercentang (Hadir)
+    const checkboxes = document.querySelectorAll('.attendance-checkbox');
+    const activeStudents = [];
+    
+    checkboxes.forEach((cb) => {
+      if (cb.checked) {
+        const idx = cb.getAttribute('data-index');
+        activeStudents.push(students[idx]);
+      }
+    });
 
     const display = document.getElementById('wheel-display');
     const announcement = document.getElementById('winner-announcement');
     const spinBtn = document.getElementById('spinBtn');
 
+    // Validasi jika tidak ada mahasiswa yang dicentang
+    if (activeStudents.length === 0) {
+      display.style.color = "#f43f5e";
+      display.textContent = "Semua Tidak Hadir!";
+      announcement.textContent = "⚠️ Harap centang minimal satu mahasiswa yang hadir.";
+      return;
+    }
+
+    isPicking = true;
     spinBtn.disabled = true;
     announcement.textContent = "";
     display.style.color = "#38bdf8";
 
-    // Acak pemenang akhir
-    const winnerIndex = Math.floor(Math.random() * students.length);
-    const winner = students[winnerIndex];
+    // Acak pemenang dari daftar yang hadir saja
+    const winnerIndex = Math.floor(Math.random() * activeStudents.length);
+    const winner = activeStudents[winnerIndex];
 
     // Efek perputaran nama cepat (slot machine effect) selama 3 detik
     let counter = 0;
     let speed = 50;
     
     function randomizeText() {
-      const tempRandom = Math.floor(Math.random() * students.length);
-      display.textContent = students[tempRandom].name;
+      const tempRandom = Math.floor(Math.random() * activeStudents.length);
+      display.textContent = activeStudents[tempRandom].name;
       counter++;
 
       if (counter < 40) {
