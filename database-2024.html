@@ -135,7 +135,7 @@
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
   }
 
-  /* --- DESAIN WHEEL OF NAMES DINAMIS & KEREN --- */
+  /* --- DESAIN WHEEL DENGAN NAMA DI DALAMNYA --- */
   .wheel-section {
     text-align: center;
     display: flex;
@@ -153,18 +153,18 @@
 
   .wheel-container {
     position: relative;
-    width: 320px;
-    height: 320px;
+    width: 360px;
+    height: 360px;
     display: flex;
     justify-content: center;
     align-items: center;
-    filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.3));
+    filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.35));
   }
 
-  /* Penunjuk Roda Modern Bergaya Sci-Fi */
+  /* Penunjuk Roda Sci-Fi */
   .wheel-pointer {
     position: absolute;
-    top: -18px;
+    top: -16px;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
@@ -174,42 +174,16 @@
     border-top: 30px solid #f43f5e;
     z-index: 25;
     filter: drop-shadow(0 4px 8px rgba(244, 63, 94, 0.6));
-    animation: bouncePointer 1.5s ease-in-out infinite;
   }
 
-  @keyframes bouncePointer {
-    0%, 100% { transform: translateX(-50%) translateY(0); }
-    50% { transform: translateX(-50%) translateY(-4px); }
-  }
-
-  /* Roda Outer dengan Efek Gradasi Dinamis */
-  .wheel-outer {
+  /* Canvas Roda */
+  #wheelCanvas {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: conic-gradient(
-      #f43f5e 0deg 60deg, 
-      #3b82f6 60deg 120deg, 
-      #10b981 120deg 180deg, 
-      #f59e0b 180deg 240deg, 
-      #8b5cf6 240deg 300deg, 
-      #ec4899 300deg 360deg
-    );
-    box-shadow: inset 0 0 25px rgba(0,0,0,0.6), 0 0 20px rgba(255,255,255,0.1);
     border: 8px solid #1e293b;
-    position: relative;
-    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
     transition: transform 4.5s cubic-bezier(0.15, 0, 0.15, 1);
-  }
-
-  /* Garis Pemisah Segmen dalam Roda */
-  .wheel-outer::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    border: 2px dashed rgba(255, 255, 255, 0.3);
-    pointer-events: none;
   }
 
   /* Poros Tengah Roda */
@@ -218,8 +192,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90px;
-    height: 90px;
+    width: 75px;
+    height: 75px;
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     border: 4px solid #38bdf8;
     border-radius: 50%;
@@ -227,19 +201,18 @@
     justify-content: center;
     align-items: center;
     z-index: 15;
-    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5), inset 0 2px 5px rgba(255,255,255,0.2);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
   }
 
   .wheel-center-hub span {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 900;
     color: #38bdf8;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
   }
 
-  /* Kotak Hasil Pemenang Interaktif */
+  /* Kotak Hasil Pemenang */
   .winner-display-container {
     display: flex;
     flex-direction: column;
@@ -256,31 +229,13 @@
     border-radius: 16px;
     width: 100%;
     box-shadow: inset 0 2px 6px rgba(255,255,255,0.05), 0 10px 25px rgba(0,0,0,0.4);
-    position: relative;
-    overflow: hidden;
-  }
-
-  .winner-display-box::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
-    animation: shimmer 3s infinite;
-  }
-
-  @keyframes shimmer {
-    100% { left: 100%; }
   }
 
   #wheel-display {
-    font-size: 20px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 700;
     color: #38bdf8;
     letter-spacing: 0.5px;
-    text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
   }
 
   #winner-announcement {
@@ -291,7 +246,7 @@
     text-shadow: 0 2px 8px rgba(0,0,0,0.6);
   }
 
-  /* Tombol Putar Dinamis & Glowing */
+  /* Tombol Putar */
   .spin-btn {
     background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
     color: #ffffff;
@@ -312,10 +267,6 @@
     color: #0f172a;
     transform: translateY(-3px) scale(1.03);
     box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4);
-  }
-
-  .spin-btn:active:not(:disabled) {
-    transform: translateY(-1px);
   }
 
   .spin-btn:disabled {
@@ -356,10 +307,6 @@
     top: 0;
     backdrop-filter: blur(8px);
     z-index: 5;
-  }
-
-  .custom-table tr {
-    transition: background 0.2s ease;
   }
 
   .custom-table tr:hover {
@@ -447,14 +394,14 @@
       <div class="page-subtitle">Daftar Mahasiswa & Fitur Undian Nama Interaktif</div>
     </div>
 
-    <!-- Bagian Wheel of Names Dinamis & Keren -->
+    <!-- Bagian Wheel of Names dengan Nama di Roda -->
     <div class="content-card wheel-section">
       <h3>Wheel of Names (Undian Mahasiswa)</h3>
       
       <div class="wheel-wrapper">
         <div class="wheel-container">
           <div class="wheel-pointer"></div>
-          <div class="wheel-outer" id="wheelOuter"></div>
+          <canvas id="wheelCanvas" width="400" height="400"></canvas>
           <div class="wheel-center-hub">
             <span>BISPRO</span>
           </div>
@@ -523,49 +470,93 @@
     tableBody.appendChild(row);
   });
 
+  // Render Roda Nama menggunakan HTML5 Canvas agar teks muncul presisi di setiap segmen
+  const canvas = document.getElementById('wheelCanvas');
+  const ctx = canvas.getContext('2d');
+  const colors = ['#f43f5e', '#3b82f6', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#06b6d4'];
+  const totalSlices = students.length;
+  const arcSize = (2 * Math.PI) / totalSlices;
+
+  function drawWheel() {
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = canvas.width / 2 - 5;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    for (let i = 0; i < totalSlices; i++) {
+      const startAngle = i * arcSize;
+      const endAngle = (i + 1) * arcSize;
+
+      // Gambar Segmen Warna
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+      ctx.closePath();
+      ctx.fillStyle = colors[i % colors.length];
+      ctx.fill();
+      ctx.strokeStyle = '#1e293b';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // Tulis Nama Mahasiswa di dalam Segmen
+      ctx.save();
+      ctx.translate(centerX, centerY);
+      ctx.rotate(startAngle + arcSize / 2);
+      ctx.textAlign = 'right';
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold 13px "Segoe UI", sans-serif';
+      
+      // Batasi panjang teks jika terlalu panjang agar tetap rapi di dalam roda
+      let displayName = students[i].name;
+      if (displayName.length > 12) {
+        displayName = displayName.substring(0, 11) + '..';
+      }
+      
+      ctx.fillText(displayName, radius - 25, 5);
+      ctx.restore();
+    }
+  }
+
+  drawWheel();
+
   let currentRotation = 0;
   let isSpinning = false;
 
-  // Fungsi Putar Roda Dinamis
   function spinWheel() {
     if (isSpinning) return;
     isSpinning = true;
 
-    const wheel = document.getElementById('wheelOuter');
     const display = document.getElementById('wheel-display');
     const announcement = document.getElementById('winner-announcement');
     const spinBtn = document.getElementById('spinBtn');
 
     spinBtn.disabled = true;
     announcement.textContent = "";
+    display.textContent = "Roda sedang berputar...";
     display.style.color = "#38bdf8";
 
-    // Acak pemenang
+    // Acak indeks pemenang
     const winnerIndex = Math.floor(Math.random() * students.length);
     const winner = students[winnerIndex];
 
-    // Putaran minimal 6 putaran penuh ditambah sudut acak agar dinamis
-    const randomExtraDegrees = Math.floor(Math.random() * 360);
-    const totalRotation = currentRotation + 2160 + randomExtraDegrees;
+    // Hitung sudut rotasi agar tepat berhenti di segmen pemenang
+    const degreesPerSlice = 360 / totalSlices;
+    // Karena penunjuk ada di atas (270 derajat / -90 derajat pada koordinat lingkaran), hitung presisi berhentinya
+    const extraSpins = 6 * 360; // 6 putaran penuh
+    const targetAngleFromTop = 360 - (winnerIndex * degreesPerSlice + degreesPerSlice / 2);
+    const totalRotation = currentRotation + extraSpins + (targetAngleFromTop - (currentRotation % 360) + 360) % 360;
+    
     currentRotation = totalRotation;
+    canvas.style.transform = `rotate(${currentRotation}deg)`;
 
-    wheel.style.transform = `rotate(${currentRotation}deg)`;
-
-    // Efek ganti nama cepat dengan nuansa mesin undian
-    let textInterval = setInterval(() => {
-      const tempRandom = Math.floor(Math.random() * students.length);
-      display.textContent = students[tempRandom].name;
-    }, 70);
-
-    // Selesai berputar setelah 4.5 detik
     setTimeout(() => {
-      clearInterval(textInterval);
       isSpinning = false;
       spinBtn.disabled = false;
       
       display.textContent = winner.name;
       display.style.color = "#34d399";
-      announcement.innerHTML = `✨ Terpilih: <strong>${winner.name}</strong> (${winner.nim})`;
+      announcement.innerHTML = `🎉 Pemenang Terpilih: <strong>${winner.name}</strong> (${winner.nim})`;
     }, 4500);
   }
 </script>
