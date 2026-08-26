@@ -351,7 +351,7 @@
 
     <!-- Bagian Polling / Undian Bundar -->
     <div class="content-card picker-section">
-      <h3>Undian Nama Mahasiswa</h3>
+      <h3>Wheel of Names</h3>
       
       <div class="picker-box-container">
         <div class="winner-display-circle">
@@ -360,13 +360,13 @@
         <div id="winner-announcement"></div>
       </div>
 
-      <button class="spin-btn" id="spinBtn" onclick="startPicking()">Mulai Undian 🎲</button>
+      <button class="spin-btn" id="spinBtn" onclick="startPicking()">Mulai Putaran 🎲</button>
     </div>
 
     <!-- Bagian Tabel Data Mahasiswa & Status Kehadiran -->
     <div class="content-card">
       <h3>Daftar Mahasiswa Angkatan 2024</h3>
-      <div class="table-header-info">ℹ️ Hilangkan centang pada kolom <strong>Hadir</strong> jika mahasiswa berhalangan hadir, sehingga tidak ikut terundi namun namanya tetap tercatat di tabel.</div>
+      <div class="table-header-info">ℹ️ Hilangkan centang pada kolom <strong>Hadir</strong> jika mahasiswa tidak ada.</div>
       
       <div class="custom-table-wrap">
         <table class="custom-table">
@@ -397,13 +397,25 @@
 <script>
   // Data Mahasiswa
   const students = [
-    { nim: "42524001", name: "Ahmad Fauzan" },
-    { nim: "42524002", name: "Siti Nurhaliza" },
-    { nim: "42524003", name: "Rizky Ramadhan" },
-    { nim: "42524004", name: "Aulia Putri" },
-    { nim: "42524005", name: "Dimas Anggara" },
-    { nim: "42524006", name: "Nurul Hidayah" },
-    { nim: "42524007", name: "Fajar Pratama" }
+    { nim: "45424001", name: "Glorya Nopicha Puspitasari Lasampa" },
+    { nim: "45424002", name: "Andara Kayla Tri Alviani" },
+    { nim: "45424003", name: "St. Zyahraeni" },
+    { nim: "45424004", name: "Andi Annisa Ridha Apriliana" },
+    { nim: "45424006", name: "Moch Zyachdewa Daigal Utama" },
+    { nim: "45424007", name: "Alfoura Djandini" },
+    { nim: "45424008", name: "Nurul Akmal Nutfiah Syam" }
+    { nim: "45424009", name: "A. Zaky Diryananda" },
+    { nim: "45424010", name: "Azzahra Akhmad" },
+    { nim: "45424012", name: "Mukmini Sikra Rahayu R." },
+    { nim: "45424013", name: "Naura Syahirah Renata Langga" },
+    { nim: "45424014", name: "Anandita Salsabila" },
+    { nim: "45424015", name: "Tatia Queene" },
+    { nim: "45424016", name: "Nirmalasari" }
+    { nim: "45424017", name: "Nur Halizah" },
+    { nim: "45424018", name: "La Mukminin" },
+    { nim: "45424019", name: "Nur Fhadilla" },
+    { nim: "45424020", name: "Lady Chiva Ampulebang" },
+    { nim: "45424021", name: "Muh. Ainudin" }
   ];
 
   // Render Tabel Mahasiswa lengkap dengan Checkbox Kehadiran
