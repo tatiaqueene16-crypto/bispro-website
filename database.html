@@ -140,6 +140,7 @@
     color: inherit;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
   }
 
   .batch-card:hover {
@@ -217,6 +218,7 @@
   /* Style khusus untuk angkatan 2026 jika belum aktif */
   .batch-card.disabled {
     opacity: 0.75;
+    cursor: default;
   }
   .batch-card.disabled:hover {
     transform: none;
@@ -259,7 +261,6 @@
       padding: 20px 15px;
     }
     
-    /* Header diubah menjadi ke bawah (kolom) agar tidak bertabrakan dengan logo */
     .header-top {
       flex-direction: column;
       align-items: center;
@@ -321,8 +322,8 @@
     <!-- Kotak-Kotak Pilihan Angkatan -->
     <div class="batch-grid">
 
-      <!-- ANGKATAN 2024 -->
-      <a href="database-2024.html" class="batch-card">
+      <!-- ANGKATAN 2024 (Diproteksi Password) -->
+      <div onclick="checkPassword('database-2024.html', '2024')" class="batch-card">
         <div class="batch-logo-box">
           <img src="https://lh3.googleusercontent.com/d/1MZBsNUjMq9ffpu6COCydhaSW8nrMrCV2" alt="Logo Angkatan 2024" class="batch-logo-img">
         </div>
@@ -331,10 +332,10 @@
           <p>Akses data mahasiswa, struktur, dan informasi penting angkatan 2024.</p>
         </div>
         <div class="batch-btn-action">Buka Database</div>
-      </a>
+      </div>
 
-      <!-- ANGKATAN 2025 -->
-      <a href="database-2025.html" class="batch-card">
+      <!-- ANGKATAN 2025 (Diproteksi Password) -->
+      <div onclick="checkPassword('database-2025.html', '2025')" class="batch-card">
         <div class="batch-logo-box">
           <img src="https://lh3.googleusercontent.com/d/1u4eli7W-2fdtviTKTOh-DzsKv1rCFwLq" alt="Logo Angkatan 2025" class="batch-logo-img">
         </div>
@@ -343,7 +344,7 @@
           <p>Akses data mahasiswa, struktur, dan informasi penting angkatan 2025.</p>
         </div>
         <div class="batch-btn-action">Buka Database</div>
-      </a>
+      </div>
 
       <!-- ANGKATAN 2026 (Belum Ada Logo / Segera) -->
       <div class="batch-card disabled">
@@ -367,6 +368,35 @@
     <a href="https://instagram.com/bispropnup" target="_blank">@bispropnup</a>
   </div>
 </div>
+
+<!-- Script untuk Fungsi Password Database Angkatan -->
+<script>
+  function checkPassword(targetUrl, batchYear) {
+    let correctPassword = "";
+    
+    // Atur password berbeda atau sama untuk masing-masing angkatan
+    if (batchYear === "2024") {
+      correctPassword = "aetheris24"; // <-- Password Angkatan 2024
+    } else if (batchYear === "2025") {
+      correctPassword = "bispro2025"; // <-- Password Angkatan 2025 (bisa Anda ubah)
+    }
+
+    let userPassword = prompt(`Masukkan password untuk mengakses Database Angkatan ${batchYear}:`);
+
+    // Jika user menekan tombol Cancel pada kotak pop-up
+    if (userPassword === null) {
+      return;
+    }
+
+    // Cek kecocokan password
+    if (userPassword === correctPassword) {
+      alert("Password benar! Memuat halaman...");
+      window.location.href = targetUrl; // Masuk ke halaman database tujuan
+    } else {
+      alert("❌ Password salah! Akses ditolak.");
+    }
+  }
+</script>
 
 </body>
 </html>
