@@ -34,7 +34,7 @@
     box-sizing: border-box;
   }
 
-  /* --- HEADER (LOGO & MENU) --- */
+  /* --- HEADER (LOGO, TOMBOL KEMBALI & MENU) --- */
   .header-top {
     display: flex;
     justify-content: space-between;
@@ -44,11 +44,43 @@
     margin-bottom: 20px;
   }
 
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
   .logo-img {
     width: 75px;
     height: 75px;
     object-fit: contain;
     filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+  }
+
+  /* Tombol Kembali */
+  .back-btn {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
+  .back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    color: #38bdf8;
+    border-color: #38bdf8;
   }
 
   .nav-menu {
@@ -152,7 +184,6 @@
     gap: 15px;
   }
 
-  /* Kotak Undian Berbentuk Bundar */
   .winner-display-circle {
     width: 260px;
     height: 260px;
@@ -264,7 +295,6 @@
     color: #f1f5f9;
   }
 
-  /* Gaya Checkbox Kehadiran */
   .attendance-checkbox {
     width: 18px;
     height: 18px;
@@ -306,6 +336,10 @@
       gap: 15px;
       margin-bottom: 25px;
     }
+    .header-left {
+      flex-direction: column;
+      gap: 10px;
+    }
     .logo-img {
       width: 65px;
       height: 65px;
@@ -332,9 +366,16 @@
 <body>
 
 <div class="database-detail-container">
-  <!-- Header: Logo & Menu -->
+  <!-- Header: Logo, Tombol Kembali & Menu -->
   <div class="header-top">
-    <img src="https://lh3.googleusercontent.com/d/1dlXujStWQ5VyDArzjLhR1VpqVaJ9k1oj" alt="Logo PNUP" class="logo-img">
+    <div class="header-left">
+      <img src="https://lh3.googleusercontent.com/d/1dlXujStWQ5VyDArzjLhR1VpqVaJ9k1oj" alt="Logo PNUP" class="logo-img">
+      <!-- Tombol Kembali ke Halaman Utama Database -->
+      <a href="database.html" class="back-btn">
+        ← Kembali
+      </a>
+    </div>
+
     <div class="nav-menu">
       <a href="index.html">HOME</a>
       <a href="class.html">CLASS</a>
@@ -395,7 +436,7 @@
 </div>
 
 <script>
-  // Data Mahasiswa
+  // Data Mahasiswa Angkatan 2024
   const students = [
     { nim: "45424001", name: "Glorya Nopicha Puspitasari Lasampa" },
     { nim: "45424002", name: "Andara Kayla Tri Alviani" },
@@ -403,14 +444,14 @@
     { nim: "45424004", name: "Andi Annisa Ridha Apriliana" },
     { nim: "45424006", name: "Moch Zyachdewa Daigal Utama" },
     { nim: "45424007", name: "Alfoura Djandini" },
-    { nim: "45424008", name: "Nurul Akmal Nutfiah Syam" }, // <-- Koma ditambahkan di sini
+    { nim: "45424008", name: "Nurul Akmal Nutfiah Syam" },
     { nim: "45424009", name: "A. Zaky Diryananda" },
     { nim: "45424010", name: "Azzahra Akhmad" },
     { nim: "45424012", name: "Mukmini Sikra Rahayu R." },
     { nim: "45424013", name: "Naura Syahirah Renata Langga" },
     { nim: "45424014", name: "Anandita Salsabila" },
     { nim: "45424015", name: "Tatia Queene" },
-    { nim: "45424016", name: "Nirmalasari" }, // <-- Koma ditambahkan di sini
+    { nim: "45424016", name: "Nirmalasari" },
     { nim: "45424017", name: "Nur Halizah" },
     { nim: "45424018", name: "La Mukminin" },
     { nim: "45424019", name: "Nur Fhadilla" },
@@ -445,7 +486,6 @@
   function startPicking() {
     if (isPicking) return;
 
-    // Ambil daftar mahasiswa yang status checkbox-nya tercentang (Hadir)
     const checkboxes = document.querySelectorAll('.attendance-checkbox');
     const activeStudents = [];
     
@@ -460,7 +500,6 @@
     const announcement = document.getElementById('winner-announcement');
     const spinBtn = document.getElementById('spinBtn');
 
-    // Validasi jika tidak ada mahasiswa yang dicentang
     if (activeStudents.length === 0) {
       display.style.color = "#f43f5e";
       display.textContent = "Semua Tidak Hadir!";
@@ -473,11 +512,9 @@
     announcement.textContent = "";
     display.style.color = "#38bdf8";
 
-    // Acak pemenang dari daftar yang hadir saja
     const winnerIndex = Math.floor(Math.random() * activeStudents.length);
     const winner = activeStudents[winnerIndex];
 
-    // Efek perputaran nama cepat (slot machine effect) selama 3 detik
     let counter = 0;
     let speed = 50;
     
@@ -489,7 +526,6 @@
       if (counter < 40) {
         setTimeout(randomizeText, speed);
       } else {
-        // Berhenti di pemenang terpilih
         display.textContent = winner.name;
         display.style.color = "#34d399";
         announcement.innerHTML = `✨ Terpilih: <strong>${winner.name}</strong> (${winner.nim})`;
