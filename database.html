@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BISPRO PNUP - Database Angkatan</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body, html {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+  }
+
+  /* --- BACKGROUND UTAMA --- */
+  .database-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), 
+                url('https://lh3.googleusercontent.com/d/1Jvgvfzsj0BdoSMGac3139AJF8VhfT7bv') no-repeat center center fixed;
+    background-size: cover;
+    image-rendering: -webkit-optimize-contrast;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 40px;
+    box-sizing: border-box;
+  }
+
+  /* --- HEADER (LOGO & MENU) --- */
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 10;
+    margin-bottom: 20px;
+  }
+
+  .logo-img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+  }
+
+  .nav-menu {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 8px;
+    border-radius: 50px;
+    display: flex;
+    gap: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .nav-menu a {
+    text-decoration: none;
+    color: #2b2b2b;
+    font-weight: 700;
+    font-size: 14.5px;
+    padding: 10px 30px;
+    border-radius: 40px;
+    letter-spacing: 0.5px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-menu a.active, .nav-menu a:hover {
+    background: #111111;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* --- KONTEN UTAMA --- */
+  .main-content {
+    max-width: 1100px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 40px;
+  }
+
+  .page-title-box {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .page-title {
+    font-size: clamp(32px, 5vw, 45px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    font-size: clamp(14px, 2vw, 17px);
+    color: #e0e0e0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  /* --- GRID KOTAK PILIHAN ANGKATAN --- */
+  .batch-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    width: 100%;
+  }
+
+  .batch-card {
+    background: rgba(20, 20, 25, 0.65);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    transition: all 0.35s ease;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .batch-card:hover {
+    transform: translateY(-8px);
+    border-color: #70b5ff;
+    box-shadow: 0 20px 40px rgba(112, 181, 255, 0.3);
+    background: rgba(30, 30, 40, 0.75);
+  }
+
+  /* Kotak Logo Angkatan */
+  .batch-logo-box {
+    width: 130px;
+    height: 130px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px dashed rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    transition: all 0.3s ease;
+  }
+
+  .batch-card:hover .batch-logo-box {
+    border-color: #70b5ff;
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  .batch-logo-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+  }
+
+  /* Jika logo belum ada (Angkatan 2026) */
+  .placeholder-logo-text {
+    font-size: 13px;
+    color: #a0a0a0;
+    font-style: italic;
+  }
+
+  .batch-info h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .batch-info p {
+    font-size: 13.5px;
+    color: #cccccc;
+    line-height: 1.4;
+  }
+
+  .batch-btn-action {
+    margin-top: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 13.5px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: all 0.3s ease;
+  }
+
+  .batch-card:hover .batch-btn-action {
+    background: #70b5ff;
+    color: #111111;
+    border-color: #70b5ff;
+  }
+
+  /* Style khusus untuk angkatan 2026 jika belum aktif */
+  .batch-card.disabled {
+    opacity: 0.75;
+  }
+  .batch-card.disabled:hover {
+    transform: none;
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+    background: rgba(20, 20, 25, 0.65);
+  }
+  .batch-card.disabled:hover .batch-btn-action {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+
+  /* --- FOOTER SOSIAL MEDIA --- */
+  .footer-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+    z-index: 10;
+    padding-top: 10px;
+  }
+
+  .footer-bottom a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .footer-bottom a:hover {
+    color: #70b5ff;
+    transform: translateY(-3px);
+  }
+
+  /* Responsif Tampilan HP / Tablet */
+  @media (max-width: 768px) {
+    .database-container {
+      padding: 20px;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+    .nav-menu a {
+      padding: 8px 18px;
+      font-size: 13px;
+    }
+    .batch-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="database-container">
+  <!-- Bagian Atas: Logo & Menu Navigasi -->
+  <div class="header-top">
+    <img src="https://lh3.googleusercontent.com/d/1dlXujStWQ5VyDArzjLhR1VpqVaJ9k1oj" alt="Logo PNUP" class="logo-img">
+
+    <div class="nav-menu">
+      <a href="index.html">HOME</a>
+      <a href="class.html">CLASS</a>
+      <a href="database.html" class="active">DATABASE</a>
+    </div>
+  </div>
+
+  <!-- Konten Utama Halaman Database -->
+  <div class="main-content">
+    <div class="page-title-box">
+      <div class="page-title">Database Angkatan</div>
+      <div class="page-subtitle">Pilih angkatan mahasiswa BISPRO PNUP untuk melihat database lengkap</div>
+    </div>
+
+    <!-- Kotak-Kotak Pilihan Angkatan -->
+    <div class="batch-grid">
+
+      <!-- ANGKATAN 2024 -->
+      <a href="database-2024.html" class="batch-card">
+        <div class="batch-logo-box">
+          <img src="https://lh3.googleusercontent.com/d/1MZBsNUjMq9ffpu6COCydhaSW8nrMrCV2" alt="Logo Angkatan 2024" class="batch-logo-img">
+        </div>
+        <div class="batch-info">
+          <h3>Angkatan 2024</h3>
+          <p>Akses data mahasiswa, struktur, dan informasi penting angkatan 2024.</p>
+        </div>
+        <div class="batch-btn-action">Buka Database</div>
+      </a>
+
+      <!-- ANGKATAN 2025 -->
+      <a href="database-2025.html" class="batch-card">
+        <div class="batch-logo-box">
+          <img src="https://lh3.googleusercontent.com/d/1u4eli7W-2fdtviTKTOh-DzsKv1rCFwLq" alt="Logo Angkatan 2025" class="batch-logo-img">
+        </div>
+        <div class="batch-info">
+          <h3>Angkatan 2025</h3>
+          <p>Akses data mahasiswa, struktur, dan informasi penting angkatan 2025.</p>
+        </div>
+        <div class="batch-btn-action">Buka Database</div>
+      </a>
+
+      <!-- ANGKATAN 2026 (Belum Ada Logo / Segera) -->
+      <div class="batch-card disabled">
+        <div class="batch-logo-box">
+          <span class="placeholder-logo-text">Segera Hadir</span>
+        </div>
+        <div class="batch-info">
+          <h3>Angkatan 2026</h3>
+          <p>Logo dan database angkatan 2026 akan segera diperbarui.</p>
+        </div>
+        <div class="batch-btn-action">Belum Tersedia</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Bagian Bawah: Tautan Sosial Media -->
+  <div class="footer-bottom">
+    <a href="https://instagram.com/anpnupofficial" target="_blank">@anpnupofficial</a>
+    <a href="http://an.politeknikupg.ac.id" target="_blank">an.poliupg.ac.id</a>
+    <a href="https://instagram.com/bispropnup" target="_blank">@bispropnup</a>
+  </div>
+</div>
+
+</body>
+</html>
