@@ -298,17 +298,41 @@
   /* Responsif Tampilan HP / Tablet */
   @media (max-width: 768px) {
     .class-container {
-      padding: 20px;
+      padding: 20px 15px;
     }
+
+    /* Penyesuaian Header Mobile */
+    .header-top {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+
+    .logo-img {
+      width: 65px;
+      height: 65px;
+    }
+
+    .nav-menu {
+      width: 100%;
+      justify-content: center;
+      padding: 5px;
+    }
+
+    .nav-menu a {
+      padding: 8px 14px;
+      font-size: 12.5px;
+      flex: 1;
+      text-align: center;
+    }
+
     .footer-bottom {
       flex-direction: column;
       gap: 10px;
       align-items: center;
     }
-    .nav-menu a {
-      padding: 8px 18px;
-      font-size: 13px;
-    }
+
     .table-card, .booking-card {
       padding: 15px;
     }
@@ -377,7 +401,7 @@
         <button class="batch-btn" onclick="switchBatch('2024', event)">Angkatan 2024</button>
       </div>
 
-      <!-- TABEL JADWAL: ANGKATAN 2026 (BARU) -->
+      <!-- TABEL JADWAL: ANGKATAN 2026 -->
       <div id="batch-2026" class="schedule-content active-schedule">
         <h3 style="border-left-color: #70b5ff; font-size: 17px; margin-top: 10px;">Jadwal Mata Kuliah - Angkatan 2026</h3>
         <div class="custom-table-wrap">
@@ -625,7 +649,7 @@
 
     </div>
 
-    <!-- Tabel 2: Dosen Pengampu -->
+    <!-- Tabel Dosen Pengampu -->
     <div class="table-card">
       <h3>Dosen Pengampu</h3>
       <div class="custom-table-wrap">
@@ -677,21 +701,15 @@
   </div>
 </div>
 
-<!-- Skrip JavaScript untuk Mengganti Jadwal Berdasarkan Angkatan -->
 <script>
   function switchBatch(year, event) {
-    // Sembunyikan semua jadwal
     const contents = document.querySelectorAll('.schedule-content');
     contents.forEach(el => el.classList.remove('active-schedule'));
 
-    // Hilangkan status aktif dari semua tombol
     const buttons = document.querySelectorAll('.batch-btn');
     buttons.forEach(btn => btn.classList.remove('active'));
 
-    // Tampilkan jadwal sesuai angkatan yang dipilih
     document.getElementById('batch-' + year).classList.add('active-schedule');
-
-    // Berikan efek aktif pada tombol yang diklik
     event.currentTarget.classList.add('active');
   }
 </script>
