@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BISPRO PNUP - Database Angkatan 2026</title>
+<style>
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body, html {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #ffffff;
+  }
+
+  /* --- BACKGROUND UTAMA --- */
+  .database-detail-container {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.8)), 
+                url('https://lh3.googleusercontent.com/d/1Jvgvfzsj0BdoSMGac3139AJF8VhfT7bv') no-repeat center center fixed;
+    background-size: cover;
+    image-rendering: -webkit-optimize-contrast;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 40px;
+    box-sizing: border-box;
+  }
+
+  /* --- HEADER (LOGO, TOMBOL KEMBALI & MENU) --- */
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    z-index: 10;
+    margin-bottom: 20px;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .logo-img {
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+  }
+
+  /* Tombol Kembali */
+  .back-btn {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
+  .back-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    color: #38bdf8;
+    border-color: #38bdf8;
+  }
+
+  .nav-menu {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 6px 8px;
+    border-radius: 50px;
+    display: flex;
+    gap: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .nav-menu a {
+    text-decoration: none;
+    color: #2b2b2b;
+    font-weight: 700;
+    font-size: 14.5px;
+    padding: 10px 30px;
+    border-radius: 40px;
+    letter-spacing: 0.5px;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-menu a.active, .nav-menu a:hover {
+    background: #111111;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  /* --- KONTEN UTAMA --- */
+  .main-content {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 10;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding-bottom: 40px;
+  }
+
+  .page-title-box {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+
+  .page-title {
+    font-size: clamp(28px, 5vw, 40px);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-shadow: 0 4px 15px rgba(0, 0, 0, 0.7);
+    margin-bottom: 8px;
+  }
+
+  .page-subtitle {
+    font-size: clamp(14px, 2vw, 16px);
+    color: #e0e0e0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+  }
+
+  /* --- CARD KONTEN --- */
+  .content-card {
+    background: rgba(15, 15, 20, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  }
+
+  .content-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #ffffff;
+    border-left: 4px solid #38bdf8;
+    padding-left: 12px;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  }
+
+  /* --- DESAIN POLLING BUNDAR (DIGITAL PICKER) --- */
+  .picker-section {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  }
+
+  .picker-box-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .winner-display-circle {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.9) 0%, rgba(15, 23, 42, 0.95) 100%);
+    border: 4px solid #38bdf8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 25px;
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.35), inset 0 0 20px rgba(0,0,0,0.6);
+    position: relative;
+    overflow: hidden;
+  }
+
+  #wheel-display {
+    font-size: clamp(18px, 3vw, 22px);
+    font-weight: 800;
+    color: #38bdf8;
+    letter-spacing: 0.5px;
+    text-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  #winner-announcement {
+    font-size: 15px;
+    font-weight: 600;
+    color: #34d399;
+    min-height: 24px;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+    margin-top: 5px;
+  }
+
+  .spin-btn {
+    background: linear-gradient(135deg, #38bdf8 0%, #2563eb 100%);
+    color: #ffffff;
+    border: none;
+    padding: 14px 45px;
+    border-radius: 40px;
+    font-size: 16px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.5);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .spin-btn:hover:not(:disabled) {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+    color: #0f172a;
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.4);
+  }
+
+  .spin-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* --- TABEL DATA MAHASISWA & CHECKBOX KEHADIRAN --- */
+  .table-header-info {
+    font-size: 13.5px;
+    color: #94a3b8;
+    margin-bottom: 15px;
+  }
+
+  .custom-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    max-height: 380px;
+    overflow-y: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14.5px;
+  }
+
+  .custom-table th, .custom-table td {
+    padding: 14px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .custom-table th {
+    background: rgba(30, 41, 59, 0.85);
+    color: #38bdf8;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    font-size: 13px;
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(8px);
+    z-index: 5;
+  }
+
+  .custom-table tr:hover {
+    background: rgba(56, 189, 248, 0.08);
+  }
+
+  .custom-table td {
+    color: #f1f5f9;
+  }
+
+  .attendance-checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #38bdf8;
+    cursor: pointer;
+  }
+
+  /* --- FOOTER SOSIAL MEDIA --- */
+  .footer-bottom {
+    display: flex;
+    justify-content: center;
+    gap: 45px;
+    z-index: 10;
+    padding-top: 10px;
+  }
+
+  .footer-bottom a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+    transition: transform 0.3s ease, color 0.3s ease;
+  }
+
+  .footer-bottom a:hover {
+    color: #38bdf8;
+    transform: translateY(-3px);
+  }
+
+  /* Responsif HP */
+  @media (max-width: 768px) {
+    .database-detail-container {
+      padding: 20px 15px;
+    }
+    .header-top {
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .header-left {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .logo-img {
+      width: 65px;
+      height: 65px;
+    }
+    .nav-menu {
+      width: 100%;
+      justify-content: center;
+      padding: 5px;
+    }
+    .nav-menu a {
+      padding: 8px 14px;
+      font-size: 12.5px;
+      flex: 1;
+      text-align: center;
+    }
+    .footer-bottom {
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="database-detail-container">
+  <!-- Header: Logo, Tombol Kembali & Menu -->
+  <div class="header-top">
+    <div class="header-left">
+      <img src="https://lh3.googleusercontent.com/d/1dlXujStWQ5VyDArzjLhR1VpqVaJ9k1oj" alt="Logo PNUP" class="logo-img">
+      <!-- Tombol Kembali ke Halaman Utama Database -->
+      <a href="database.html" class="back-btn">
+        ← Kembali
+      </a>
+    </div>
+
+    <div class="nav-menu">
+      <a href="index.html">HOME</a>
+      <a href="class.html">CLASS</a>
+      <a href="database.html" class="active">DATABASE</a>
+    </div>
+  </div>
+
+  <!-- Konten Utama -->
+  <div class="main-content">
+    <div class="page-title-box">
+      <div class="page-title">Database Angkatan 2026</div>
+      <div class="page-subtitle">Daftar Mahasiswa & Fitur Undian Nama Mahasiswa</div>
+    </div>
+
+    <!-- Bagian Polling / Undian Bundar -->
+    <div class="content-card picker-section">
+      <h3>Wheel of Names</h3>
+      
+      <div class="picker-box-container">
+        <div class="winner-display-circle">
+          <div id="wheel-display">Tekan Tombol Mulai</div>
+        </div>
+        <div id="winner-announcement"></div>
+      </div>
+
+      <button class="spin-btn" id="spinBtn" onclick="startPicking()">Mulai Putaran 🎲</button>
+    </div>
+
+    <!-- Bagian Tabel Data Mahasiswa & Status Kehadiran -->
+    <div class="content-card">
+      <h3>Daftar Mahasiswa Angkatan 2026</h3>
+      <div class="table-header-info">ℹ️ Hilangkan centang pada kolom <strong>Hadir</strong> jika mahasiswa tidak ada.</div>
+      
+      <div class="custom-table-wrap">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th style="width: 70px; text-align: center;">Hadir</th>
+              <th>No</th>
+              <th>NIM</th>
+              <th>Nama Mahasiswa</th>
+            </tr>
+          </thead>
+          <tbody id="student-table-body">
+            <!-- Data mahasiswa dimuat otomatis via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer-bottom">
+    <a href="https://instagram.com/anpnupofficial" target="_blank">@anpnupofficial</a>
+    <a href="http://an.politeknikupg.ac.id" target="_blank">an.poliupg.ac.id</a>
+    <a href="https://instagram.com/bispropnup" target="_blank">@bispropnup</a>
+  </div>
+</div>
+
+<script>
+  // Data Mahasiswa Angkatan 2026
+  const students = [
+    { nim: "45426001", name: "NURFATIN SAZWANIE" },
+    { nim: "45426023", name: "Fildzah Muthiah Adam" },
+    { nim: "45426016", name: "Sitti Nurlela" },
+    { nim: "45426020", name: "Dhudit Dwi Suryadi" },
+    { nim: "45426024", name: "Muh. Nabil Aryaputra" },
+    { nim: "45426002", name: "Afriana" },
+    { nim: "45426014", name: "Agrielycia Elvira Pondan" },
+    { nim: "45426017", name: "Cut Aqillah Cheryl Airin" },
+    { nim: "45426006", name: "Muhammad Sabian" },
+    { nim: "45426004", name: "Irman Shah" },
+    { nim: "45426025", name: "Muh. Alif Mu'tashim Gasba" },
+    { nim: "45426026", name: "Nazwa Kyla Andyti Fildzah" },
+    { nim: "45426010", name: "Sriwahyuni" },
+    { nim: "45426011", name: "Moch. Daffa Arshavinoor Hasan" },
+    { nim: "45426019", name: "Winnie Citra Pertiwi" },
+    { nim: "45426015", name: "Inggrid Gloria" },
+    { nim: "45426003", name: "Damodara Gacor" },
+    { nim: "45426009", name: "Jihan Nabila Rusdi" },
+    { nim: "45426018", name: "Cantika Putri Wardani" },
+    { nim: "45426005", name: "Fauziah Azzahra Sultan" },
+    { nim: "45426021", name: "Sabrina Maharani" },
+    { nim: "45426008", name: "Haura Salim" }
+  ];
+
+  // Render Tabel Mahasiswa lengkap dengan Checkbox Kehadiran
+  const tableBody = document.getElementById('student-table-body');
+  
+  function renderTable() {
+    tableBody.innerHTML = "";
+    students.forEach((student, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td style="text-align: center;">
+          <input type="checkbox" class="attendance-checkbox" checked data-index="${index}">
+        </td>
+        <td>${index + 1}</td>
+        <td>${student.nim}</td>
+        <td>${student.name}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+
+  renderTable();
+
+  let isPicking = false;
+
+  // Fungsi Undian dengan Filter Kehadiran
+  function startPicking() {
+    if (isPicking) return;
+
+    const checkboxes = document.querySelectorAll('.attendance-checkbox');
+    const activeStudents = [];
+    
+    checkboxes.forEach((cb) => {
+      if (cb.checked) {
+        const idx = cb.getAttribute('data-index');
+        activeStudents.push(students[idx]);
+      }
+    });
+
+    const display = document.getElementById('wheel-display');
+    const announcement = document.getElementById('winner-announcement');
+    const spinBtn = document.getElementById('spinBtn');
+
+    if (activeStudents.length === 0) {
+      display.style.color = "#f43f5e";
+      display.textContent = "Semua Tidak Hadir!";
+      announcement.textContent = "⚠️ Harap centang minimal satu mahasiswa yang hadir.";
+      return;
+    }
+
+    isPicking = true;
+    spinBtn.disabled = true;
+    announcement.textContent = "";
+    display.style.color = "#38bdf8";
+
+    const winnerIndex = Math.floor(Math.random() * activeStudents.length);
+    const winner = activeStudents[winnerIndex];
+
+    let counter = 0;
+    let speed = 50;
+    
+    function randomizeText() {
+      const tempRandom = Math.floor(Math.random() * activeStudents.length);
+      display.textContent = activeStudents[tempRandom].name;
+      counter++;
+
+      if (counter < 40) {
+        setTimeout(randomizeText, speed);
+      } else {
+        display.textContent = winner.name;
+        display.style.color = "#34d399";
+        announcement.innerHTML = `✨ Terpilih: <strong>${winner.name}</strong> (${winner.nim})`;
+        isPicking = false;
+        spinBtn.disabled = false;
+      }
+    }
+
+    randomizeText();
+  }
+</script>
+
+</body>
+</html>
