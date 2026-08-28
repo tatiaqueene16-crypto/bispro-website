@@ -176,13 +176,6 @@
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
   }
 
-  /* Jika logo belum ada (Angkatan 2026) */
-  .placeholder-logo-text {
-    font-size: 13px;
-    color: #a0a0a0;
-    font-style: italic;
-  }
-
   .batch-info h3 {
     font-size: 22px;
     font-weight: 700;
@@ -215,23 +208,6 @@
     border-color: #70b5ff;
   }
 
-  /* Style khusus untuk angkatan 2026 jika belum aktif */
-  .batch-card.disabled {
-    opacity: 0.75;
-    cursor: default;
-  }
-  .batch-card.disabled:hover {
-    transform: none;
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
-    background: rgba(20, 20, 25, 0.65);
-  }
-  .batch-card.disabled:hover .batch-btn-action {
-    background: rgba(255, 255, 255, 0.1);
-    color: #ffffff;
-    border-color: rgba(255, 255, 255, 0.2);
-  }
-
   /* --- FOOTER SOSIAL MEDIA --- */
   .footer-bottom {
     display: flex;
@@ -259,7 +235,6 @@
   @media (max-width: 768px) {
     .database-container {
       padding: 20px 15px;
-      /* Background mobile baru dengan efek gelap yang lebih tipis agar lebih terang */
       background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.45)), 
                   url('https://lh3.googleusercontent.com/d/11JCY2sI97JlJGCnF0tabMTiawV0cHYdm') no-repeat center center fixed;
       background-size: cover;
@@ -326,7 +301,7 @@
     <!-- Kotak-Kotak Pilihan Angkatan -->
     <div class="batch-grid">
 
-      <!-- ANGKATAN 2024 (Diproteksi Password) -->
+      <!-- ANGKATAN 2024 -->
       <div onclick="checkPassword('database-2024.html', '2024')" class="batch-card">
         <div class="batch-logo-box">
           <img src="https://lh3.googleusercontent.com/d/1MZBsNUjMq9ffpu6COCydhaSW8nrMrCV2" alt="Logo Angkatan 2024" class="batch-logo-img">
@@ -338,7 +313,7 @@
         <div class="batch-btn-action">Buka Database</div>
       </div>
 
-      <!-- ANGKATAN 2025 (Diproteksi Password) -->
+      <!-- ANGKATAN 2025 -->
       <div onclick="checkPassword('database-2025.html', '2025')" class="batch-card">
         <div class="batch-logo-box">
           <img src="https://lh3.googleusercontent.com/d/1u4eli7W-2fdtviTKTOh-DzsKv1rCFwLq" alt="Logo Angkatan 2025" class="batch-logo-img">
@@ -350,16 +325,16 @@
         <div class="batch-btn-action">Buka Database</div>
       </div>
 
-      <!-- ANGKATAN 2026 (Belum Ada Logo / Segera) -->
-      <div class="batch-card disabled">
+      <!-- ANGKATAN 2026 (Menggunakan Logo Baru & Terhubung ke database-2026.html) -->
+      <div onclick="checkPassword('database-2026.html', '2026')" class="batch-card">
         <div class="batch-logo-box">
-          <span class="placeholder-logo-text">Segera Hadir</span>
+          <img src="https://lh3.googleusercontent.com/d/1UVE01B8QNXDRW4pEhoH08tsarzPM-KHH" alt="Logo Angkatan 2026" class="batch-logo-img">
         </div>
         <div class="batch-info">
           <h3>Angkatan 2026</h3>
-          <p>Logo dan database angkatan 2026 akan segera diperbarui.</p>
+          <p>Akses data mahasiswa, struktur, dan informasi penting angkatan 2026.</p>
         </div>
-        <div class="batch-btn-action">Belum Tersedia</div>
+        <div class="batch-btn-action">Buka Database</div>
       </div>
 
     </div>
@@ -378,11 +353,13 @@
   function checkPassword(targetUrl, batchYear) {
     let correctPassword = "";
     
-    // Atur password berbeda atau sama untuk masing-masing angkatan
+    // Atur password untuk masing-masing angkatan
     if (batchYear === "2024") {
-      correctPassword = "aetheris24"; // <-- Password Angkatan 2024
+      correctPassword = "aetheris24"; 
     } else if (batchYear === "2025") {
-      correctPassword = "bispro2025"; // <-- Password Angkatan 2025 (bisa Anda ubah)
+      correctPassword = "bispro2025"; 
+    } else if (batchYear === "2026") {
+      correctPassword = "bispro2026"; // <-- Password Angkatan 2026 (bisa Anda ubah sesuai keinginan)
     }
 
     let userPassword = prompt(`Masukkan password untuk mengakses Database Angkatan ${batchYear}:`);
